@@ -247,6 +247,12 @@ function controler_acces(Contexte $c, string $niveau): ?Reponse
     $secret = $c->config['SECRET'];
     $version = version_lien($c->pdo());
     $acces = cookie_acces_valide($secret, $version, $c->cookie(COOKIE_ACCES));
+    // Accès libre : sans cookie valable, on en pose un pour la version courante du lien (il en faut un : le prénom
+    // y est lié). L'administration garde sa clé.
+    if (!$acces && $c->config['ACCES_LIBRE'] && $version >= 1) {
+        $acces = true;
+        $c->poserCookieAcces = true;
+    }
 
     $id = lire_cookie_prenom($secret, $c->cookie(COOKIE_PRENOM), $version);
     if ($acces && $id !== null) {

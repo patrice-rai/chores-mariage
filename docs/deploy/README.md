@@ -160,6 +160,7 @@ return [
     'TAILLE_MAX_UPLOAD_MO' => 200,         // ≤ upload_max_filesize et post_max_size de l’étape 2
     'ESPACE_MAX_MO' => 5000,               // place que tu donnes aux vidéos
     'ENV' => 'production',                 // jamais 'dev' en ligne
+    'ACCES_LIBRE' => true,                 // true : le site s'ouvre sans le lien secret (choix du 13 octobre 2026) ; false : lien obligatoire
 ];
 ```
 

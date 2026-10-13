@@ -14,6 +14,8 @@ final class Contexte
     private ?PDO $pdo = null;
     /** Jeton CSRF créé pendant cette requête, à poser en cookie avec la réponse. */
     public ?string $nouveauCsrf = null;
+    /** Accès libre : le cookie d'accès manquait, il est posé avec la réponse. */
+    public bool $poserCookieAcces = false;
     /** @var array{id: int, prenom: string, est_admin: int}|null */
     public ?array $cousin = null;
     /** Tests : un fichier « téléversé » est un simple fichier temporaire (rename au lieu de move_uploaded_file). */

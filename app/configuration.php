@@ -6,7 +6,7 @@ namespace Chores;
 
 // Lecture et contrôle de la configuration (fichier non versionné à côté de app/, modèle : config.example.php).
 
-/** @return array{SECRET: string, CLE_ADMIN: string, BASE_PATH: string, URL_PUBLIQUE: string, TAILLE_MAX_UPLOAD_MO: int, ESPACE_MAX_MO: int, ENV: string} */
+/** @return array{SECRET: string, CLE_ADMIN: string, BASE_PATH: string, URL_PUBLIQUE: string, TAILLE_MAX_UPLOAD_MO: int, ESPACE_MAX_MO: int, ENV: string, ACCES_LIBRE: bool} */
 function charger_configuration(?string $fichier = null): array
 {
     $fichier ??= RACINE . '/config.php';
@@ -23,7 +23,7 @@ function charger_configuration(?string $fichier = null): array
 
 /**
  * @param array<string, mixed> $brute
- * @return array{SECRET: string, CLE_ADMIN: string, BASE_PATH: string, URL_PUBLIQUE: string, TAILLE_MAX_UPLOAD_MO: int, ESPACE_MAX_MO: int, ENV: string}
+ * @return array{SECRET: string, CLE_ADMIN: string, BASE_PATH: string, URL_PUBLIQUE: string, TAILLE_MAX_UPLOAD_MO: int, ESPACE_MAX_MO: int, ENV: string, ACCES_LIBRE: bool}
  */
 function normaliser_configuration(array $brute): array
 {
@@ -45,6 +45,9 @@ function normaliser_configuration(array $brute): array
         'TAILLE_MAX_UPLOAD_MO' => max(1, (int) ($brute['TAILLE_MAX_UPLOAD_MO'] ?? 200)),
         'ESPACE_MAX_MO' => max(1, (int) ($brute['ESPACE_MAX_MO'] ?? 5000)),
         'ENV' => $env,
+        // Accès libre (13 octobre 2026) : le site s'ouvre sans le lien secret ; le cookie d'accès est posé au premier
+        // passage. Le choix du prénom et l'administration (clé) ne changent pas.
+        'ACCES_LIBRE' => filter_var($brute['ACCES_LIBRE'] ?? false, FILTER_VALIDATE_BOOL),
     ];
 }
 

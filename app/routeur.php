@@ -100,6 +100,9 @@ function traiter(Contexte $c, Routeur $routeur): Reponse
     if ($c->nouveauCsrf !== null) {
         $reponse->avecCookie(COOKIE_CSRF, $c->nouveauCsrf, 0);
     }
+    if ($c->poserCookieAcces) {
+        $reponse->avecCookie(COOKIE_ACCES, valeur_cookie_acces($c->config['SECRET'], version_lien($c->pdo())), DUREE_COOKIE);
+    }
 
     return $reponse;
 }

@@ -12,6 +12,8 @@
 // URL_PUBLIQUE : adresse du site sans BASE_PATH, par exemple 'https://[domaine]' (sert à écrire le lien complet).
 // TAILLE_MAX_UPLOAD_MO, ESPACE_MAX_MO : limites des vidéos (à régler selon l'offre Hostinger).
 // ENV : 'production' sur l'hébergeur, 'dev' en local seulement (cookies sans Secure, outils de test permis).
+// ACCES_LIBRE : true = le site s'ouvre sans passer par le lien secret (tout le monde peut entrer et choisir un
+//   prénom ; l'administration reste protégée par CLE_ADMIN) ; false = seul le lien secret ouvre le site.
 
 return [
     'SECRET' => '',
@@ -21,4 +23,5 @@ return [
     'TAILLE_MAX_UPLOAD_MO' => 200,
     'ESPACE_MAX_MO' => 5000,
     'ENV' => 'production',
+    'ACCES_LIBRE' => false,
 ];

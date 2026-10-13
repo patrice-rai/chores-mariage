@@ -2,7 +2,7 @@
 
 Version 1.0.0 (`app/version.php`).
 
-Site privé où neuf cousins répètent cinq chorégraphies pour un mariage : un seul lien secret, on touche son prénom, et c'est parti. PHP 8.3 sans framework + SQLite, HTML/CSS/JS natifs, aucune ressource externe.
+Site où neuf cousins répètent cinq chorégraphies pour un mariage : on touche son prénom, et c'est parti. Deux modes dans `config.php` : accès libre (`ACCES_LIBRE => true`, le site s'ouvre à tous) ou un seul lien secret à partager. PHP 8.3 sans framework + SQLite, HTML/CSS/JS natifs, aucune ressource externe.
 
 Dépôt public : le code, la distribution (prénoms des danseurs, chansons, liens publics) et les documents de travail y sont ; les échanges du groupe WhatsApp, les vidéos et la configuration réelle n'y sont pas.
 
