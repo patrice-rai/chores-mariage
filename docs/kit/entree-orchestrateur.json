@@ -1,0 +1,12 @@
+{
+  "id": "chores-mariage",
+  "nom": "Chorés du mariage",
+  "description": "Site privé des cousins, PHP + SQLite (Hostinger)",
+  "dossier": "P:/PROJECT/chores-mariage",
+  "pilote": "docs/kit/autopilot/autopilot.mjs",
+  "modele": "claude-opus-5-5",
+  "phases": [
+    2,
+    6
+  ]
+}

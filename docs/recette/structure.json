@@ -1,0 +1,318 @@
+{
+  "pages": {
+    "/moi": {
+      "titre": "Ma page — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/chanson/kanimaa": {
+      "titre": "Kanimaa — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/chanson/kanimaa?section=2": {
+      "titre": "Kanimaa — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/chanson/yaaro-yaarodi": {
+      "titre": "Yaaro Yaarodi — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/chanson/innisai": {
+      "titre": "Innisai — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/placements/kanimaa": {
+      "titre": "Placements — Kanimaa — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/placements/kanimaa?scene=1": {
+      "titre": "Mode scène — Kanimaa — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/repetitions": {
+      "titre": "Répétitions — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/videos": {
+      "titre": "Vidéos des cousins — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/videos/ajouter": {
+      "titre": "Ajouter ma vidéo — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/videos/2": {
+      "titre": "Catherine · Démo, section A — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/jour-j": {
+      "titre": "Jour J — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/hors-ligne": {
+      "titre": "Hors ligne — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/page-qui-n-existe-pas": {
+      "titre": "Page introuvable — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin": {
+      "titre": "Administration — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/lien": {
+      "titre": "Nouveau lien — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/reglages": {
+      "titre": "Réglages — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/chansons": {
+      "titre": "Chansons — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/chansons/kanimaa": {
+      "titre": "Kanimaa (administration) — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/chansons/kanimaa/sections": {
+      "titre": "Sections de Kanimaa — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/chansons/kanimaa/placements": {
+      "titre": "Placements de Kanimaa — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/journal": {
+      "titre": "Journal — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/repetitions": {
+      "titre": "Répétitions — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/repetitions/1": {
+      "titre": "Répétition du dimanche 6 septembre 2026 — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/jour-j": {
+      "titre": "Jour J — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/videos": {
+      "titre": "Vidéos — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/admin/base": {
+      "titre": "Base et sauvegardes — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    },
+    "/gabarits": {
+      "titre": "Gabarits — Chorés du mariage",
+      "h1": 1,
+      "main": 1,
+      "evitementEnPremier": true,
+      "navSansNom": 0,
+      "aideEnPied": true,
+      "tableauxSansLegende": 0,
+      "lang": "fr"
+    }
+  },
+  "ordreDuFocus": {
+    "/moi": [
+      "a « Aller au contenu »",
+      "button « Changer de prénom (tu es Catherine) »",
+      "button « Mode sombre désactivé »",
+      "a « Voir les répétitions »",
+      "a « Répéter Celebration of Varisu »",
+      "a « Répéter Kanimaa »",
+      "a « Répéter Yaaro Yaarodi »",
+      "a « Kanimaa Catherine à 0:03 : « Section A : »",
+      "a « Kanimaa Catherine a posté « Démo, sectio »",
+      "a « Placements »",
+      "a « Répétitions »",
+      "a « Vidéos des cousins »",
+      "a « Jour J »",
+      "body « Aller au contenu Changer de prénom (tu e »"
+    ],
+    "/chanson/kanimaa": [
+      "a « Aller au contenu »",
+      "a « ← Retour »",
+      "button « Mode sombre désactivé »",
+      "button « Lecture »",
+      "a « Plein écran (mode répétition) »",
+      "button « 0,5 × »",
+      "button « 0,75 × »",
+      "button « 1 × ✓ »",
+      "button « Miroir désactivé »",
+      "button « Boucle désactivée »",
+      "summary « Raccourcis clavier »",
+      "button « Garder sur mon téléphone (279 Ko) »",
+      "summary « Pour que tes vidéos restent »",
+      "a « 1 Section 1 : Section A 2 × 8 · 0:08 en  »"
+    ]
+  }
+}

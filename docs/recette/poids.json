@@ -1,0 +1,234 @@
+{
+  "/moi": {
+    "html": 6719,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 19519,
+    "jsGzip": 7514,
+    "polices": 48568
+  },
+  "/chanson/kanimaa": {
+    "html": 21030,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 53230,
+    "jsGzip": 18330,
+    "polices": 48568
+  },
+  "/chanson/kanimaa?section=2": {
+    "html": 21040,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 53230,
+    "jsGzip": 18330,
+    "polices": 48568
+  },
+  "/chanson/yaaro-yaarodi": {
+    "html": 9375,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 44964,
+    "jsGzip": 15385,
+    "polices": 48568
+  },
+  "/chanson/innisai": {
+    "html": 8450,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 44964,
+    "jsGzip": 15385,
+    "polices": 48568
+  },
+  "/placements/kanimaa": {
+    "html": 9107,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/placements/kanimaa?scene=1": {
+    "html": 7944,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/repetitions": {
+    "html": 3321,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/videos": {
+    "html": 3627,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/videos/ajouter": {
+    "html": 6319,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 17780,
+    "jsGzip": 6942,
+    "polices": 48568
+  },
+  "/videos/2": {
+    "html": 8128,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 26842,
+    "jsGzip": 10549,
+    "polices": 48568
+  },
+  "/jour-j": {
+    "html": 4702,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/hors-ligne": {
+    "html": 2243,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 19519,
+    "jsGzip": 7514,
+    "polices": 48568
+  },
+  "/page-qui-n-existe-pas": {
+    "html": 1637,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin": {
+    "html": 7592,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/lien": {
+    "html": 2847,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/reglages": {
+    "html": 6203,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/chansons": {
+    "html": 5589,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/chansons/kanimaa": {
+    "html": 19225,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 13472,
+    "jsGzip": 5563,
+    "polices": 48568
+  },
+  "/admin/chansons/kanimaa/sections": {
+    "html": 11874,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 13472,
+    "jsGzip": 5563,
+    "polices": 48568
+  },
+  "/admin/chansons/kanimaa/placements": {
+    "html": 16406,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/journal": {
+    "html": 4466,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/repetitions": {
+    "html": 5240,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/repetitions/1": {
+    "html": 9356,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/jour-j": {
+    "html": 7103,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/videos": {
+    "html": 5548,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/admin/base": {
+    "html": 3306,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 11253,
+    "jsGzip": 4569,
+    "polices": 48568
+  },
+  "/gabarits": {
+    "html": 104781,
+    "css": 72580,
+    "cssGzip": 15855,
+    "js": 39239,
+    "jsGzip": 13227,
+    "polices": 48568
+  },
+  "/chanson/kanimaa/repeter": {
+    "html": 6296,
+    "css": 65675,
+    "cssGzip": 14341,
+    "js": 39239,
+    "jsGzip": 13227,
+    "polices": 48568
+  }
+}

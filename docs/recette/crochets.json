@@ -1,0 +1,98 @@
+{
+  "/moi": [
+    "[contact]"
+  ],
+  "/chanson/kanimaa": [
+    "[contact]"
+  ],
+  "/chanson/kanimaa?section=2": [
+    "[contact]"
+  ],
+  "/chanson/yaaro-yaarodi": [
+    "[contact]"
+  ],
+  "/chanson/innisai": [
+    "[film à confirmer]",
+    "[durée inconnue]",
+    "[contact]"
+  ],
+  "/placements/kanimaa": [
+    "[contact]"
+  ],
+  "/placements/kanimaa?scene=1": [
+    "[contact]"
+  ],
+  "/repetitions": [
+    "[contact]"
+  ],
+  "/videos": [
+    "[contact]"
+  ],
+  "/videos/ajouter": [
+    "[contact]"
+  ],
+  "/videos/2": [
+    "[contact]"
+  ],
+  "/jour-j": [
+    "[date]",
+    "[lieu]",
+    "[contact]"
+  ],
+  "/hors-ligne": [
+    "[contact]"
+  ],
+  "/page-qui-n-existe-pas": [
+    "[contact]"
+  ],
+  "/admin": [
+    "[contact]"
+  ],
+  "/admin/lien": [
+    "[contact]"
+  ],
+  "/admin/reglages": [
+    "[date]",
+    "[lieu]",
+    "[contact]"
+  ],
+  "/admin/chansons": [
+    "[contact]"
+  ],
+  "/admin/chansons/kanimaa": [
+    "[film à confirmer]",
+    "[durée inconnue]",
+    "[contact]"
+  ],
+  "/admin/chansons/kanimaa/sections": [
+    "[contact]"
+  ],
+  "/admin/chansons/kanimaa/placements": [
+    "[contact]"
+  ],
+  "/admin/journal": [
+    "[contact]"
+  ],
+  "/admin/repetitions": [
+    "[contact]"
+  ],
+  "/admin/repetitions/1": [
+    "[contact]"
+  ],
+  "/admin/jour-j": [
+    "[contact]"
+  ],
+  "/admin/videos": [
+    "[contact]"
+  ],
+  "/admin/base": [
+    "[contact]"
+  ],
+  "/gabarits": [
+    "[date]",
+    "[heure]",
+    "[lieu]",
+    "[à compléter]",
+    "[contact]"
+  ]
+}

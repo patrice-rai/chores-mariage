@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm check*)",
+      "Bash(pnpm test:e2e*)",
+      "Bash(pnpm captures*)",
+      "Bash(docker compose up*)",
+      "Bash(docker compose ps*)",
+      "Bash(docker compose exec -T web composer *)",
+      "Bash(docker compose exec -T web php scripts/*)",
+      "Bash(node --test*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "PowerShell(pnpm check*)",
+      "PowerShell(pnpm test:e2e*)",
+      "PowerShell(pnpm captures*)",
+      "PowerShell(docker compose up*)",
+      "PowerShell(docker compose ps*)",
+      "PowerShell(docker compose exec -T web composer *)",
+      "PowerShell(docker compose exec -T web php scripts/*)",
+      "PowerShell(node --test*)",
+      "PowerShell(git status*)",
+      "PowerShell(git diff*)",
+      "PowerShell(git log*)"
+    ],
+    "deny": [
+      "Read(./config.php)",
+      "Read(**/config.php)",
+      "Read(./stockage/**)",
+      "Edit(./config.php)",
+      "Edit(**/config.php)",
+      "Edit(./stockage/**)",
+      "Write(./config.php)",
+      "Write(**/config.php)",
+      "Write(./stockage/**)",
+      "Bash(git push*)",
+      "Bash(git remote add *)",
+      "Bash(git remote set-url *)",
+      "Bash(gh pr *)",
+      "Bash(gh repo *)",
+      "Bash(gh auth *)",
+      "Bash(git commit --no-verify*)",
+      "Bash(git commit -n *)",
+      "Bash(git commit *--no-verify*)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(rm -fr *)",
+      "Bash(docker system prune*)",
+      "Bash(docker container prune*)",
+      "Bash(docker volume prune*)",
+      "Bash(docker image prune*)",
+      "Bash(docker builder prune*)",
+      "Bash(docker * prune*)",
+      "Bash(docker volume rm *)",
+      "Bash(docker compose down -v*)",
+      "Bash(docker compose down --volumes*)",
+      "Bash(cat config.php)",
+      "Bash(cat ./config.php)",
+      "PowerShell(git push*)",
+      "PowerShell(git remote add *)",
+      "PowerShell(git remote set-url *)",
+      "PowerShell(gh pr *)",
+      "PowerShell(gh repo *)",
+      "PowerShell(gh auth *)",
+      "PowerShell(git commit --no-verify*)",
+      "PowerShell(git commit -n *)",
+      "PowerShell(git commit *--no-verify*)",
+      "PowerShell(rm -rf *)",
+      "PowerShell(rm -r*)",
+      "PowerShell(Remove-Item -Recurse*)",
+      "PowerShell(Remove-Item * -Recurse*)",
+      "PowerShell(Remove-Item -r*)",
+      "PowerShell(Remove-Item * -r*)",
+      "PowerShell(ri -r*)",
+      "PowerShell(ri * -r*)",
+      "PowerShell(rmdir * -r*)",
+      "PowerShell(rd /s*)",
+      "PowerShell(docker system prune*)",
+      "PowerShell(docker container prune*)",
+      "PowerShell(docker volume prune*)",
+      "PowerShell(docker image prune*)",
+      "PowerShell(docker builder prune*)",
+      "PowerShell(docker * prune*)",
+      "PowerShell(docker volume rm *)",
+      "PowerShell(docker compose down -v*)",
+      "PowerShell(docker compose down --volumes*)",
+      "PowerShell(Get-Content config.php)",
+      "PowerShell(Get-Content ./config.php)",
+      "PowerShell(type config.php)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Read|Edit|MultiEdit|Write|NotebookEdit|Grep|Glob",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/garde-fous.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.claude/hooks/check.mjs\"",
+            "timeout": 600
+          }
+        ]
+      }
+    ]
+  }
+}

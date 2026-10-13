@@ -1,0 +1,47 @@
+# ================================================================
+#  .htaccess — racine de public_html, site « Chorés du mariage »
+#  Variante « tout dans public_html » (docs/deploy/README.md, § 5 ter) :
+#  le paquet entier est déposé dans public_html ; le site est servi
+#  depuis public/ sans que « /public » apparaisse dans l'adresse ;
+#  app/, scripts/, donnees/, stockage/ et config.php sont interdits.
+# ================================================================
+
+Options -Indexes -MultiViews
+ServerSignature Off
+AddDefaultCharset utf-8
+
+# Fichiers sensibles : jamais servis, où qu'ils soient
+<FilesMatch "^(config\.php|config\.example\.php|composer\.json|VERSION)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(sql|sqlite|sqlite3|db|sqlite-wal|sqlite-shm|log|ini|lock|bak|md)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # HTTPS obligatoire (désactivé en local)
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:|$) [NC]
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Dossiers de code et de données : interdits (403)
+    RewriteRule ^(app|scripts|donnees|docs|stockage|vendor)(/|$) - [F,L]
+
+    # Tout le reste est servi depuis public/ ; public/.htaccess prend ensuite le relais (ses règles remplacent
+    # celles-ci dans ce dossier : une adresse tapée « /public/… » tombe donc sur la page 404 du site, rien de plus).
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always unset X-Powered-By
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "no-referrer"
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>

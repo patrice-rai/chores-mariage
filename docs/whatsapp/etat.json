@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "groupe": "Danse Mariage",
+    "source": "distribution connue au 12 octobre 2026 ; dépôt public : les échanges du groupe WhatsApp ne sont pas versionnés",
+    "releve_le": "2026-10-12T23:31:00+02:00"
+  },
+  "danseurs": [
+    {"nom": "Alex", "dans_le_groupe": true},
+    {"nom": "Catherine", "dans_le_groupe": true},
+    {"nom": "Fabien", "dans_le_groupe": true},
+    {"nom": "Flobert", "dans_le_groupe": true},
+    {"nom": "Jessica", "dans_le_groupe": false},
+    {"nom": "Josiane", "dans_le_groupe": true},
+    {"nom": "Nadine", "dans_le_groupe": true},
+    {"nom": "Patrice", "dans_le_groupe": true},
+    {"nom": "Stéphane", "dans_le_groupe": false}
+  ],
+  "chansons": [
+    {"titre": "Celebration of Varisu", "danseurs": ["Fabien", "Flobert", "Alex", "Patrice", "Josiane", "Catherine", "Jessica", "Stéphane"], "statut": "proposee", "liens": []},
+    {"titre": "Yaaro Yaarodi", "danseurs": ["Josiane", "Catherine", "Jessica"], "statut": "proposee", "liens": ["https://youtu.be/Bsj8btRiKuE"]},
+    {"titre": "Thalapathy Kacheri", "danseurs": ["Fabien", "Flobert", "Alex"], "danseurs_en_attente": ["Patrice"], "statut": "proposee", "liens": []},
+    {"titre": "Inisai", "danseurs": ["Nadine"], "statut": "decidee", "liens": ["https://youtu.be/lxTdrnJzZwY"], "note": "Titre YouTube : « Innisai »."},
+    {"titre": "Kanimaa", "danseurs": ["Fabien", "Flobert", "Alex", "Patrice", "Josiane", "Catherine", "Jessica", "Stéphane"], "statut": "proposee", "liens": ["https://youtu.be/6MeLi9KQD84", "https://youtu.be/RI8o9iza7zE"]},
+    {"titre": "Maamadura", "danseurs": [], "statut": "proposee", "liens": ["https://youtu.be/yl2FMetiMLw", "https://youtu.be/TTZ4bnxsv7A"]},
+    {"titre": "The Wedding Song", "danseurs": [], "statut": "proposee", "liens": ["https://youtu.be/rfza9kCybEs"]},
+    {"titre": "Sangeeth Celebration", "danseurs": [], "statut": "proposee", "liens": ["https://youtu.be/EUOafXrZjDQ"]}
+  ],
+  "repetitions": [
+    {"date": "2026-09-06", "lieu": "Villiers", "horaire": "à partir de midi, jusqu'à 19h", "statut": "decidee", "presents": [], "absents": [], "incertains": []}
+  ],
+  "questions_ouvertes": []
+}

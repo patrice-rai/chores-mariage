@@ -1,0 +1,86 @@
+# Racine web du site « Chorés du mariage » (public/ en local, dossier du site dans public_html chez Hostinger).
+# Tout passe par index.php sauf les fichiers existants ; les en-têtes de sécurité des pages viennent de PHP
+# (app/securite.php), ceux des fichiers statiques d'ici.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.php
+ServerSignature Off
+
+# Types MIME
+AddType application/manifest+json .webmanifest
+AddType font/woff2 .woff2
+AddType text/javascript .js .mjs
+AddDefaultCharset utf-8
+AddCharset utf-8 .css .js .mjs .webmanifest .txt
+
+# Refus : fichiers cachés (.git, .htaccess…), bases SQLite, tout PHP sauf index.php, chemin-app.php.
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(sqlite|sqlite3|db|sqlite-wal|sqlite-shm|bak|sql|log|ini|lock|md)$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(php|phtml|phar|php\d)$">
+    Require all denied
+</FilesMatch>
+<Files "index.php">
+    Require all granted
+</Files>
+<Files "chemin-app.php">
+    Require all denied
+</Files>
+# Licences des polices (OFL) : lisibles, en texte brut.
+<Files "LICENCES.md">
+    Require all granted
+    ForceType text/plain
+</Files>
+# Pages PHP jamais compressées (jeton CSRF : attaque BREACH), même si l'hébergeur compresse par défaut.
+<Files "index.php">
+    SetEnv no-gzip 1
+    SetEnv no-brotli 1
+</Files>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Dossier caché demandé directement (.git/…) : introuvable (sauf le défi du certificat).
+    RewriteCond %{REQUEST_URI} !/\.well-known/acme-challenge/
+    RewriteRule (^|/)\. - [R=404,L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L,QSA,E=no-gzip:1,E=no-brotli:1]
+</IfModule>
+
+# Compression des fichiers statiques seulement (feuilles, scripts, manifeste, SVG). Jamais les pages HTML : elles
+# portent un jeton CSRF à côté de l'adresse demandée, et la compression permettrait de le deviner (attaque BREACH).
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/css text/javascript application/javascript application/manifest+json image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header always unset X-Powered-By
+
+    # Fichiers statiques (les pages PHP envoient les leurs, identiques, depuis app/securite.php).
+    <FilesMatch "\.(css|js|mjs|woff2|png|svg|ico|webmanifest|txt|html|md)$">
+        Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'"
+        Header always set X-Content-Type-Options "nosniff"
+        Header always set Referrer-Policy "no-referrer"
+        Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+        Header always set Cross-Origin-Opener-Policy "same-origin"
+        Header always set Cross-Origin-Resource-Policy "same-origin"
+        Header always set X-Frame-Options "DENY"
+        Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+    </FilesMatch>
+
+    # Ressources versionnées par empreinte (?v=… pour les feuilles, version dans le nom pour les polices) : cache long.
+    <FilesMatch "\.(css|woff2|png|svg|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    # Modules JavaScript : ils s'importent entre eux sans empreinte dans l'adresse, donc revalidés à chaque visite
+    # (réponse 304 si rien n'a changé).
+    <FilesMatch "\.(js|mjs)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+    # Le service worker et le manifeste se relisent toujours.
+    <FilesMatch "^(sw\.js|manifest\.webmanifest)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>

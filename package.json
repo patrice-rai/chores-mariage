@@ -1,0 +1,29 @@
+{
+  "name": "chores-mariage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Outillage local du site « Chorés du mariage » (Docker, tests de bout en bout, captures). Le site n'a aucune dépendance côté client.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "packageManager": "pnpm@12.9.1",
+  "scripts": {
+    "up": "docker compose up -d --build --wait",
+    "composer:check": "docker compose exec -T web composer check",
+    "test:e2e": "playwright test",
+    "test:js": "node --test \"tests/js/*.test.mjs\"",
+    "captures": "node scripts/captures.mjs",
+    "check": "docker compose exec -T web composer check && node --test \"tests/js/*.test.mjs\" && playwright test",
+    "essai:paquet": "node scripts/essai-paquet.mjs",
+    "lighthouse": "node scripts/lighthouse.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@fontsource-variable/nunito-sans": "5.3.0",
+    "@fontsource/yeseva-one": "5.3.0",
+    "@playwright/test": "1.63.0",
+    "lighthouse": "13.5.0"
+  }
+}

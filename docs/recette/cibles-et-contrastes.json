@@ -1,0 +1,26 @@
+{
+  "contrastes": {
+    "badge Miroir activé (light)": [
+      6.1
+    ],
+    "points de scène (light)": [
+      9.01,
+      6.1,
+      9.01
+    ],
+    "badge Miroir activé (dark)": [
+      8.81
+    ],
+    "points de scène (dark)": [
+      6.62,
+      8.81,
+      6.62
+    ],
+    "surimpressions du mode répétition": [
+      6.62,
+      11.21,
+      11.21
+    ]
+  },
+  "ciblesSous44": {}
+}

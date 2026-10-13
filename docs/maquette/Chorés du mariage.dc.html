@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fffaf3}
+a{color:#8a1538}a:hover{color:#c9930a}
+button{font-family:inherit}
+button:focus-visible{outline:3px solid #c9930a;outline-offset:2px}
+@keyframes beat{0%{transform:scale(.6);opacity:0}25%{transform:scale(1.08);opacity:1}100%{transform:scale(1);opacity:1}}
+</style>
+</helmet>
+<div data-screen-label="{{ screenLabel }}" style="--bg:{{ c.bg }};--surface:{{ c.surface }};--surface2:{{ c.surface2 }};--text:{{ c.text }};--muted:{{ c.muted }};--grenat:{{ c.grenat }};--onGrenat:{{ c.onGrenat }};--gold:{{ c.gold }};--onGold:{{ c.onGold }};--line:{{ c.line }};--green:{{ c.green }};--orange:{{ c.orange }};width:{{ frameW }};max-width:100%;height:{{ frameH }};overflow-y:auto;overflow-x:hidden;background:var(--bg,#fffaf3);color:var(--text,#2a1a12);font-family:'Nunito Sans',system-ui,sans-serif;font-size:17px;line-height:1.4;box-sizing:border-box;position:relative">
+
+<sc-if value="{{ offline }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="background:var(--text,#2a1a12);color:var(--bg,#fffaf3);padding:10px 16px;font-size:15px;font-weight:700">Pas de réseau : tu peux répéter les sections déjà enregistrées sur ton téléphone.</div>
+</sc-if>
+
+<sc-if value="{{ showTop }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;align-items:center;gap:8px;padding:10px 12px;min-height:60px;box-sizing:border-box">
+<button onClick="{{ back }}" style="height:48px;padding:0 14px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:16px;cursor:pointer">{{ backLabel }}</button>
+<div style="flex:1;min-width:0;font-family:'Yeseva One',serif;font-size:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ topTitle }}</div>
+<button onClick="{{ toggleTheme }}" aria-pressed="{{ isDark }}" style="height:44px;padding:0 12px;border-radius:12px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:700;font-size:14px;cursor:pointer">{{ themeLabel }}</button>
+</div>
+</sc-if>
+
+<!-- 1. ENTRÉE -->
+<sc-if value="{{ isEntree }}" hint-placeholder-val="{{ true }}">
+<div style="padding:40px 20px 28px;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);border-radius:0 0 24px 24px">
+<div style="font-family:'Yeseva One',serif;font-size:42px;line-height:1.05">Chorés du mariage</div>
+<p style="margin:14px 0 0;font-size:18px;text-wrap:pretty">Cinq chorés, neuf cousins, un seul lien. Touche ton prénom et on y va.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:20px 16px 8px">
+<sc-for list="{{ names }}" as="n" hint-placeholder-count="9">
+<button onClick="{{ n.pick }}" style="height:72px;border-radius:14px;border:0;background:var(--surface,#f6ead8);color:var(--text,#2a1a12);font-weight:800;font-size:18px;cursor:pointer;padding:0 4px;overflow:hidden" style-hover="background:var(--gold,#c9930a);color:var(--onGold,#2a1a12)">{{ n.name }}</button>
+</sc-for>
+</div>
+<p style="margin:16px 20px;color:var(--muted,#5c4a44);font-size:15px">Tu n'es pas dans la liste ? Demande le lien à Patrice.</p>
+</sc-if>
+
+<!-- 2. MA PAGE -->
+<sc-if value="{{ isAccueil }}" hint-placeholder-val="{{ false }}">
+<div style="padding:4px 16px 24px;display:flex;flex-direction:column;gap:24px">
+<h1 style="margin:0;font-family:'Yeseva One',serif;font-size:38px;font-weight:400;line-height:1.05">Salut {{ me }}</h1>
+
+<section aria-label="Prochaine répétition" style="background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);border-radius:16px;padding:18px 18px 16px">
+<div style="font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.9">Prochaine répétition — date pas encore fixée</div>
+<div style="font-family:'Yeseva One',serif;font-size:26px;margin-top:6px;line-height:1.1">{{ next.when }}</div>
+<div style="margin-top:4px;font-size:16px">Sondage en cours : {{ pollLead }} en tête, {{ pollVotes }}.</div>
+<a href="#" style="display:inline-flex;align-items:center;height:44px;padding:0 14px;margin-top:10px;border-radius:12px;background:var(--onGrenat,#fffaf3);color:var(--grenat,#8a1538);font-weight:800;font-size:16px;text-decoration:none">Voter dans le sondage ↗</a>
+<div style="margin-top:10px;font-size:15px">On travaille : {{ next.work }}</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+<button onClick="{{ sayYes }}" aria-pressed="{{ saidYes }}" style="height:52px;border-radius:12px;border:2px solid var(--onGrenat,#fffaf3);background:{{ yesBg }};color:{{ yesFg }};font-weight:800;font-size:17px;cursor:pointer">{{ yesLabel }}</button>
+<button onClick="{{ sayNo }}" aria-pressed="{{ saidNo }}" style="height:52px;border-radius:12px;border:2px solid var(--onGrenat,#fffaf3);background:{{ noBg }};color:{{ noFg }};font-weight:800;font-size:17px;cursor:pointer">{{ noLabel }}</button>
+</div>
+<p style="margin:12px 0 0;font-size:15px;line-height:1.4">{{ next.replies }}</p>
+</section>
+
+<section aria-label="Tes chorés" style="display:flex;flex-direction:column;gap:12px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Tes chorés</h2>
+<sc-for list="{{ mySongs }}" as="s" hint-placeholder-count="3">
+<article style="background:var(--surface,#f6ead8);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline">
+<div style="font-weight:800;font-size:19px">{{ s.title }}</div>
+<div style="font-variant-numeric:tabular-nums;color:var(--muted,#5c4a44);font-size:15px;white-space:nowrap">{{ s.durText }}</div>
+</div>
+<div style="color:var(--muted,#5c4a44);font-size:15px">{{ s.film }} · {{ s.who }}</div>
+<sc-if value="{{ s.toCreate }}" hint-placeholder-val="{{ false }}">
+<div style="color:var(--orange,#b4530a);font-weight:800;font-size:15px">Choré à créer — {{ s.creators }}</div>
+</sc-if>
+<sc-if value="{{ s.isDecided }}" hint-placeholder-val="{{ false }}">
+<div style="color:var(--green,#2e6b3a);font-weight:800;font-size:15px">{{ s.decidedText }}</div>
+</sc-if>
+<sc-if value="{{ s.isPending }}" hint-placeholder-val="{{ false }}">
+<div style="font-weight:800;font-size:15px;border:2px solid var(--line,#e3d3bb);border-radius:10px;padding:8px 10px">En attente — {{ s.pendingText }}</div>
+</sc-if>
+<sc-if value="{{ s.hasProgress }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:10px">
+<div style="flex:1;height:8px;border-radius:4px;background:var(--surface2,#efe0c8);overflow:hidden"><div style="height:100%;background:var(--gold,#c9930a);width:{{ s.pct }}"></div></div>
+<div style="font-variant-numeric:tabular-nums;font-size:15px;font-weight:700;white-space:nowrap">{{ s.progress }}</div>
+</div>
+</sc-if>
+<button onClick="{{ s.open }}" style="height:48px;border-radius:12px;border:0;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);font-weight:800;font-size:17px;cursor:pointer;margin-top:4px">Répéter</button>
+</article>
+</sc-for>
+<div style="border:2px dashed var(--line,#e3d3bb);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:4px">
+<div style="font-weight:800;font-size:15px;color:var(--muted,#5c4a44)">Proposées, pas tranchées</div>
+<div style="font-size:16px">{{ proposed }}</div>
+<div style="font-size:14px;color:var(--muted,#5c4a44)">Personne n'a décidé : on garde ou on laisse tomber ? À régler à la prochaine répétition.</div>
+</div>
+</section>
+
+<section aria-label="Ce qui bouge" style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Ce qui bouge</h2>
+<sc-for list="{{ feed }}" as="f" hint-placeholder-count="3">
+<button onClick="{{ f.open }}" style="display:flex;gap:12px;align-items:center;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line,#e3d3bb);padding:8px 0 12px;cursor:pointer;color:inherit;font:inherit;min-height:56px;width:100%">
+<div style="width:72px;height:48px;border-radius:8px;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);display:flex;align-items:flex-end;padding:6px;box-sizing:border-box;font-size:11px;font-weight:800;line-height:1.1;flex-shrink:0">{{ f.thumb }}</div>
+<div style="flex:1;min-width:0"><div style="font-weight:700">{{ f.head }}</div><div style="color:var(--muted,#5c4a44);font-size:15px">{{ f.sub }}</div></div>
+</button>
+</sc-for>
+</section>
+
+<nav aria-label="Aller à" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button onClick="{{ goPlacements }}" style="height:52px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:17px;cursor:pointer">Placements</button>
+<button onClick="{{ goRepetitions }}" style="height:52px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:17px;cursor:pointer">Répétitions</button>
+<button onClick="{{ goVideos }}" style="height:52px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:17px;cursor:pointer">Vidéos des cousins</button>
+<button onClick="{{ goJourJ }}" style="height:52px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:17px;cursor:pointer">Jour J</button>
+</nav>
+</div>
+</sc-if>
+
+<!-- 3. PAGE D'UNE CHANSON (mobile + bureau, même flux) -->
+<sc-if value="{{ isChanson }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-wrap:wrap;gap:0 32px;padding:0 16px 32px;align-items:flex-start">
+<div style="flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:20px">
+<div>
+<h1 style="margin:0;font-family:'Yeseva One',serif;font-size:32px;font-weight:400;line-height:1.05">{{ song.title }}</h1>
+<div style="color:var(--muted,#5c4a44);font-size:15px;margin-top:4px">{{ song.film }} · {{ song.durText }} · {{ song.bpmText }} · {{ song.who }}</div>
+</div>
+
+<sc-if value="{{ song.toCreate }}" hint-placeholder-val="{{ false }}">
+<div role="note" style="border:3px solid var(--orange,#b4530a);border-radius:16px;padding:14px 16px">
+<div style="font-weight:800;font-size:18px;color:var(--orange,#b4530a)">La choré n'est pas encore posée. Qui s'en occupe ?</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+<sc-for list="{{ creatorBtns }}" as="k" hint-placeholder-count="3">
+<button onClick="{{ k.on }}" aria-pressed="{{ k.active }}" style="height:44px;padding:0 14px;border-radius:12px;border:2px solid var(--orange,#b4530a);background:{{ k.bg }};color:{{ k.fg }};font-weight:800;font-size:16px;cursor:pointer">{{ k.label }}</button>
+</sc-for>
+</div>
+<p style="margin:10px 0 0;font-size:15px;color:var(--muted,#5c4a44)">{{ song.createNote }}</p>
+</div>
+</sc-if>
+
+<!-- Lecteur -->
+<section aria-label="Lecteur vidéo de référence" style="display:flex;flex-direction:column;gap:10px">
+<div style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3)">
+<div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;transform:{{ videoTransform }}">
+<div style="font-family:'Yeseva One',serif;font-size:28px;line-height:1">{{ song.title }}</div>
+<div style="font-variant-numeric:tabular-nums;font-size:15px;margin-top:4px">{{ timeText }} / {{ song.durText }} · {{ curSection.name }}</div>
+</div>
+<sc-if value="{{ mirror }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;top:12px;left:12px;background:var(--gold,#c9930a);color:var(--onGold,#2a1a12);font-weight:800;font-size:14px;padding:4px 10px;border-radius:8px">Miroir activé</div></sc-if>
+<sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}"><div role="status" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(23,18,26,.72);font-weight:800;font-size:20px;text-align:center;padding:20px">Chargement de la vidéo…<br><span style="font-weight:400;font-size:15px">Les sections enregistrées sur ton téléphone partent tout de suite.</span></div></sc-if>
+<sc-if value="{{ counting }}" hint-placeholder-val="{{ false }}"><div role="status" aria-live="assertive" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(23,18,26,.6)">{{ countEl }}<span style="position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:15px;font-weight:700">Décompte : {{ countText }}</span></div></sc-if>
+<div style="position:absolute;left:0;right:0;bottom:0;height:6px;background:rgba(0,0,0,.35)"><div style="height:100%;background:var(--gold,#c9930a);width:{{ progressPct }}"></div></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button onClick="{{ togglePlay }}" style="height:64px;border-radius:14px;border:0;background:var(--gold,#c9930a);color:var(--onGold,#2a1a12);font-weight:800;font-size:20px;cursor:pointer">{{ playLabel }}</button>
+<button onClick="{{ goRepet }}" style="height:64px;border-radius:14px;border:0;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);font-weight:800;font-size:18px;cursor:pointer">Plein écran</button>
+</div>
+<div role="group" aria-label="Vitesse" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+<sc-for list="{{ speeds }}" as="sp" hint-placeholder-count="3">
+<button onClick="{{ sp.on }}" aria-pressed="{{ sp.active }}" style="height:56px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ sp.bg }};color:{{ sp.fg }};font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;cursor:pointer">{{ sp.label }}</button>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button onClick="{{ toggleMirror }}" aria-pressed="{{ mirror }}" style="height:56px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ mirrorBg }};color:{{ mirrorFg }};font-weight:800;font-size:17px;cursor:pointer;line-height:1.1">Miroir<br><span style="font-weight:400;font-size:14px">{{ mirrorState }}</span></button>
+<button onClick="{{ toggleLoop }}" aria-pressed="{{ loop }}" style="height:56px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ loopBg }};color:{{ loopFg }};font-weight:800;font-size:17px;cursor:pointer;line-height:1.1">Boucle<br><span style="font-weight:400;font-size:14px">{{ loopState }}</span></button>
+</div>
+</section>
+
+<!-- Sections -->
+<section aria-label="Sections" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Sections</h2>
+<p style="margin:0;color:var(--muted,#5c4a44);font-size:15px">Touche une section pour la lancer. On compte 5-6-7-8 pour partir.</p>
+<sc-for list="{{ sectionRows }}" as="r" hint-placeholder-count="8">
+<div style="border-radius:14px;padding:10px 12px;background:{{ r.bg }};border:2px solid {{ r.border }};display:flex;flex-direction:column;gap:8px">
+<button onClick="{{ r.select }}" aria-pressed="{{ r.isCurrent }}" style="display:flex;align-items:center;gap:10px;background:transparent;border:0;padding:0;min-height:44px;width:100%;text-align:left;color:inherit;font:inherit;cursor:pointer">
+<span style="font-family:'Yeseva One',serif;font-size:20px;width:28px;text-align:center;flex-shrink:0">{{ r.num }}</span>
+<span style="flex:1;font-weight:800;font-size:18px">{{ r.name }}</span>
+<span style="font-variant-numeric:tabular-nums;font-size:15px;white-space:nowrap">{{ r.counts }} · {{ r.dur }}</span>
+</button>
+<sc-if value="{{ r.offlineNote }}" hint-placeholder-val="{{ false }}"><div style="font-size:14px;font-weight:700;color:var(--muted,#5c4a44)">{{ r.offlineNote }}</div></sc-if>
+<div role="group" aria-label="Ton niveau" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+<button onClick="{{ r.set0 }}" aria-pressed="{{ r.is0 }}" style="height:44px;border-radius:10px;border:2px solid var(--line,#e3d3bb);background:{{ r.bg0 }};color:{{ r.fg0 }};font-weight:700;font-size:14px;cursor:pointer;padding:0 4px">Pas encore</button>
+<button onClick="{{ r.set1 }}" aria-pressed="{{ r.is1 }}" style="height:44px;border-radius:10px;border:2px solid var(--line,#e3d3bb);background:{{ r.bg1 }};color:{{ r.fg1 }};font-weight:700;font-size:14px;cursor:pointer;padding:0 4px">Presque</button>
+<button onClick="{{ r.set2 }}" aria-pressed="{{ r.is2 }}" style="height:44px;border-radius:10px;border:2px solid var(--line,#e3d3bb);background:{{ r.bg2 }};color:{{ r.fg2 }};font-weight:800;font-size:14px;cursor:pointer;padding:0 4px">Je maîtrise</button>
+</div>
+</div>
+</sc-for>
+</section>
+</div>
+
+<div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:24px;margin-top:24px">
+<!-- Ma place -->
+<section aria-label="Ma place" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Ma place</h2>
+<div style="font-size:15px;color:var(--muted,#5c4a44)">Section en cours : {{ curSection.name }}. {{ myPlaceText }}</div>
+<div style="position:relative;aspect-ratio:2/1;background:var(--surface,#f6ead8);border-radius:14px;border:2px solid var(--line,#e3d3bb);overflow:hidden">
+<sc-for list="{{ miniDots }}" as="d" hint-placeholder-count="8">
+<div style="position:absolute;left:{{ d.x }};top:{{ d.y }};transform:translate(-50%,-50%);width:{{ d.size }};height:{{ d.size }};border-radius:50%;background:{{ d.bg }};color:{{ d.fg }};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:{{ d.fs }}">{{ d.label }}</div>
+</sc-for>
+<div style="position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--surface2,#efe0c8);padding:3px">Public</div>
+</div>
+<button onClick="{{ goPlacements }}" style="height:48px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:16px;cursor:pointer;align-self:flex-start;padding:0 16px">Voir tous les placements</button>
+</section>
+
+<!-- Qui maîtrise quoi -->
+<section aria-label="Qui maîtrise quoi" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Qui maîtrise quoi</h2>
+<div style="font-size:14px;color:var(--muted,#5c4a44)">✓ je maîtrise · ≈ presque · · pas encore</div>
+<div style="overflow-x:auto">
+<div style="display:grid;grid-template-columns:88px repeat({{ gridCols }},minmax(30px,1fr));gap:3px;min-width:300px">
+<div></div>
+<sc-for list="{{ gridHead }}" as="h" hint-placeholder-count="8"><div style="text-align:center;font-size:12px;font-weight:800;color:var(--muted,#5c4a44);min-height:20px">{{ h.short }}</div></sc-for>
+<sc-for list="{{ gridRows }}" as="g" hint-placeholder-count="8">
+<div style="font-size:14px;font-weight:{{ g.weight }};display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ g.name }}</div>
+<sc-for list="{{ g.cells }}" as="cell" hint-placeholder-count="8">
+<div title="{{ cell.title }}" aria-label="{{ cell.title }}" style="height:32px;border-radius:6px;background:{{ cell.bg }};color:{{ cell.fg }};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px">{{ cell.glyph }}</div>
+</sc-for>
+</sc-for>
+</div>
+</div>
+</section>
+
+<!-- Tutoriels -->
+<section aria-label="Tutoriels" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Tutoriels</h2>
+<sc-if value="{{ song.hasTuto }}" hint-placeholder-val="{{ true }}">
+<sc-for list="{{ song.tutos }}" as="t" hint-placeholder-count="2">
+<a href="#" style="display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 0;border-bottom:1px solid var(--line,#e3d3bb);text-decoration:none;color:inherit">
+<div style="flex:1"><div style="font-weight:700">{{ t.title }}</div><div style="font-size:14px;color:var(--muted,#5c4a44)">{{ t.meta }}</div></div>
+<div style="font-weight:800;color:var(--grenat,#8a1538);white-space:nowrap">YouTube ↗</div>
+</a>
+</sc-for>
+</sc-if>
+<sc-if value="{{ song.toCreate }}" hint-placeholder-val="{{ false }}"><p style="margin:0;color:var(--muted,#5c4a44);font-size:15px">Pas de tutoriel : c'est vous qui posez la choré. Filmez-la, elle apparaîtra ici.</p></sc-if>
+<sc-if value="{{ myPending }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:15px;font-weight:700;border:2px solid var(--line,#e3d3bb);border-radius:10px;padding:8px 10px">En attente : tu as demandé à rejoindre cette choré, le trio n'a pas encore répondu.</p></sc-if>
+</section>
+
+<!-- Vidéos des cousins -->
+<section aria-label="Vidéos des cousins" style="display:flex;flex-direction:column;gap:10px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Vidéos des cousins</h2>
+<sc-for list="{{ songVideos }}" as="v" hint-placeholder-count="2">
+<article style="display:flex;gap:12px;align-items:flex-start">
+<div style="width:96px;height:64px;border-radius:10px;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);flex-shrink:0;display:flex;flex-direction:column;justify-content:flex-end;padding:6px;box-sizing:border-box;font-size:12px;font-weight:800;line-height:1.1"><span>{{ v.songTitle }}</span><span style="font-variant-numeric:tabular-nums;font-weight:400">{{ v.dur }}</span></div>
+<div style="flex:1;min-width:0"><div style="font-weight:800">{{ v.author }} · {{ v.title }}</div><div style="font-size:14px;color:var(--muted,#5c4a44)">{{ v.date }} · {{ v.nComments }}</div></div>
+</article>
+</sc-for>
+<sc-if value="{{ noSongVideos }}" hint-placeholder-val="{{ false }}"><p style="margin:0;color:var(--muted,#5c4a44);font-size:15px">Personne n'a encore posté pour cette chanson.</p></sc-if>
+<button onClick="{{ goVideos }}" style="height:48px;border-radius:12px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:16px;cursor:pointer">Toutes les vidéos</button>
+</section>
+</div>
+</div>
+</sc-if>
+
+<!-- 4. MODE RÉPÉTITION -->
+<sc-if value="{{ isRepet }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:#17121a;color:#fff7ec;display:flex;flex-direction:column">
+<div style="position:relative;flex:1;min-height:0;background:#8a1538">
+<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform:{{ videoTransform }}"><div style="font-family:'Yeseva One',serif;font-size:34px;opacity:.5;text-align:center;padding:0 24px">{{ song.title }}</div></div>
+<div style="position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+<div style="background:rgba(23,18,26,.85);border-radius:12px;padding:8px 14px"><div style="font-family:'Yeseva One',serif;font-size:28px;line-height:1">{{ curSection.name }}</div><div style="font-variant-numeric:tabular-nums;font-size:20px;font-weight:800">{{ curSection.counts }} · {{ curSection.dur }}</div></div>
+<div style="background:rgba(23,18,26,.85);border-radius:12px;padding:8px 14px;font-size:18px;font-weight:800;text-align:right">{{ repStatus }}</div>
+</div>
+<sc-if value="{{ counting }}" hint-placeholder-val="{{ false }}"><div role="status" aria-live="assertive" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(23,18,26,.75)">{{ countElBig }}<span style="position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:20px;font-weight:800">Décompte : {{ countText }}</span></div></sc-if>
+<div style="position:absolute;left:0;right:0;bottom:0;height:8px;background:rgba(0,0,0,.4)"><div style="height:100%;background:#e0ab2a;width:{{ progressPct }}"></div></div>
+</div>
+<div style="padding:12px;display:flex;flex-direction:column;gap:10px">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button onClick="{{ togglePlay }}" style="height:72px;border-radius:14px;border:0;background:#e0ab2a;color:#17121a;font-weight:800;font-size:24px;cursor:pointer">{{ playLabel }}</button>
+<button onClick="{{ nextSection }}" style="height:72px;border-radius:14px;border:0;background:#fff7ec;color:#17121a;font-weight:800;font-size:20px;cursor:pointer">Section suivante</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+<sc-for list="{{ speedsDark }}" as="sp" hint-placeholder-count="3">
+<button onClick="{{ sp.on }}" aria-pressed="{{ sp.active }}" style="height:60px;border-radius:12px;border:2px solid #fff7ec;background:{{ sp.bg }};color:{{ sp.fg }};font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;cursor:pointer">{{ sp.label }}</button>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+<button onClick="{{ toggleMirror }}" aria-pressed="{{ mirror }}" style="height:60px;border-radius:12px;border:2px solid #fff7ec;background:{{ mirrorBgD }};color:{{ mirrorFgD }};font-weight:800;font-size:18px;cursor:pointer;line-height:1.1">Miroir<br><span style="font-weight:400;font-size:14px">{{ mirrorState }}</span></button>
+<button onClick="{{ toggleLoop }}" aria-pressed="{{ loop }}" style="height:60px;border-radius:12px;border:2px solid #fff7ec;background:{{ loopBgD }};color:{{ loopFgD }};font-weight:800;font-size:18px;cursor:pointer;line-height:1.1">Boucle<br><span style="font-weight:400;font-size:14px">{{ loopState }}</span></button>
+<button onClick="{{ leaveRepet }}" style="height:60px;border-radius:12px;border:2px solid #fff7ec;background:transparent;color:#fff7ec;font-weight:800;font-size:18px;cursor:pointer">Quitter</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<!-- 5. PLACEMENTS -->
+<sc-if value="{{ isPlacements }}" hint-placeholder-val="{{ false }}">
+<div style="padding:4px 16px 32px;display:flex;flex-direction:column;gap:16px">
+<sc-if value="{{ stageMode }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+<div style="font-family:'Yeseva One',serif;font-size:28px">Mode scène</div>
+<button onClick="{{ leaveStage }}" style="height:48px;padding:0 16px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:transparent;color:var(--grenat,#8a1538);font-weight:800;font-size:16px;cursor:pointer">Quitter</button>
+</div>
+</sc-if>
+<div>
+<h1 style="margin:0;font-family:'Yeseva One',serif;font-size:32px;font-weight:400;line-height:1.05">{{ song.title }}</h1>
+<div style="color:var(--muted,#5c4a44);font-size:15px;margin-top:2px">La scène vue de dessus, le public en bas.</div>
+</div>
+<div role="group" aria-label="Chanson" style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ songChips }}" as="ch" hint-placeholder-count="5">
+<button onClick="{{ ch.on }}" aria-pressed="{{ ch.active }}" style="height:44px;padding:0 14px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ ch.bg }};color:{{ ch.fg }};font-weight:700;font-size:15px;cursor:pointer">{{ ch.label }}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{ notDesktop }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;align-items:center;gap:8px">
+<button onClick="{{ plPrev }}" aria-label="Section précédente" style="height:56px;width:56px;border-radius:12px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:22px;cursor:pointer;flex-shrink:0">←</button>
+<label style="flex:1;display:flex;flex-direction:column;gap:2px;font-size:13px;font-weight:700;color:var(--muted,#5c4a44)">Section
+<select value="{{ plIdx }}" onChange="{{ plSelect }}" style="height:44px;border-radius:10px;border:2px solid var(--line,#e3d3bb);background:var(--surface,#f6ead8);color:var(--text,#2a1a12);font:inherit;font-weight:800;font-size:17px;padding:0 8px;width:100%">
+<sc-for list="{{ sectionOpts }}" as="o" hint-placeholder-count="8"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+</select></label>
+<button onClick="{{ plNext }}" aria-label="Section suivante" style="height:56px;width:56px;border-radius:12px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:22px;cursor:pointer;flex-shrink:0">→</button>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-family:'Yeseva One',serif;font-size:24px">{{ plSection.name }}</div><div style="font-variant-numeric:tabular-nums;font-size:15px;color:var(--muted,#5c4a44)">{{ plSection.counts }} · {{ plSection.range }}</div></div>
+<div style="position:relative;aspect-ratio:1/1;background:var(--surface,#f6ead8);border-radius:16px;border:2px solid var(--line,#e3d3bb);overflow:hidden;background-image:linear-gradient(var(--line,#e3d3bb) 1px,transparent 1px),linear-gradient(90deg,var(--line,#e3d3bb) 1px,transparent 1px);background-size:20% 20%">
+<svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><defs><marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="{{ c.muted }}"></path></marker></defs>
+<sc-for list="{{ arrows }}" as="a" hint-placeholder-count="0"><line x1="{{ a.x1 }}" y1="{{ a.y1 }}" x2="{{ a.x2 }}" y2="{{ a.y2 }}" stroke="{{ a.stroke }}" stroke-width="{{ a.w }}" stroke-dasharray="2 2" marker-end="url(#arr)" vector-effect="non-scaling-stroke"></line></sc-for>
+</svg>
+<sc-for list="{{ dots }}" as="d" hint-placeholder-count="8">
+<div title="{{ d.title }}" aria-label="{{ d.title }}" style="position:absolute;left:{{ d.x }};top:{{ d.y }};transform:translate(-50%,-50%);width:{{ d.size }};height:{{ d.size }};border-radius:50%;background:{{ d.bg }};color:{{ d.fg }};border:3px solid {{ d.border }};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:{{ d.fs }};text-align:center;line-height:1;box-sizing:border-box">{{ d.label }}</div>
+</sc-for>
+<div style="position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--surface2,#efe0c8);padding:6px">Public</div>
+</div>
+<p style="margin:0;font-size:15px;color:var(--muted,#5c4a44)">{{ plHint }}</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<button onClick="{{ toggleHighlight }}" aria-pressed="{{ highlightMe }}" style="min-height:52px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ hlBg }};color:{{ hlFg }};font-weight:800;font-size:17px;cursor:pointer">{{ hlLabel }}</button>
+<div role="group" aria-label="Déplacer mon point" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+<button onClick="{{ mvL }}" aria-label="Me déplacer à gauche" style="height:48px;border-radius:10px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:20px;cursor:pointer">←</button>
+<button onClick="{{ mvR }}" aria-label="Me déplacer à droite" style="height:48px;border-radius:10px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:20px;cursor:pointer">→</button>
+<button onClick="{{ mvU }}" aria-label="Me déplacer vers le fond" style="height:48px;border-radius:10px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:20px;cursor:pointer">↑</button>
+<button onClick="{{ mvD }}" aria-label="Me déplacer vers le public" style="height:48px;border-radius:10px;border:0;background:var(--surface2,#efe0c8);color:var(--text,#2a1a12);font-weight:800;font-size:20px;cursor:pointer">↓</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+<p style="margin:0;font-size:15px;color:var(--muted,#5c4a44)">Les flèches montrent le déplacement vers la section suivante. Tout fonctionne au clavier : Tab puis Entrée.</p>
+<button onClick="{{ toggleHighlight }}" aria-pressed="{{ highlightMe }}" style="height:48px;padding:0 16px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ hlBg }};color:{{ hlFg }};font-weight:800;font-size:16px;cursor:pointer;white-space:nowrap">{{ hlLabel }}</button>
+</div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+<sc-for list="{{ allStages }}" as="st" hint-placeholder-count="8">
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-family:'Yeseva One',serif;font-size:20px">{{ st.num }}. {{ st.name }}</div><div style="font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted,#5c4a44)">{{ st.counts }}</div></div>
+<div style="position:relative;aspect-ratio:1/1;background:var(--surface,#f6ead8);border-radius:14px;border:2px solid var(--line,#e3d3bb);overflow:hidden;background-image:linear-gradient(var(--line,#e3d3bb) 1px,transparent 1px),linear-gradient(90deg,var(--line,#e3d3bb) 1px,transparent 1px);background-size:20% 20%">
+<svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+<sc-for list="{{ st.arrows }}" as="a" hint-placeholder-count="0"><line x1="{{ a.x1 }}" y1="{{ a.y1 }}" x2="{{ a.x2 }}" y2="{{ a.y2 }}" stroke="{{ a.stroke }}" stroke-width="{{ a.w }}" stroke-dasharray="2 2" vector-effect="non-scaling-stroke"></line></sc-for>
+</svg>
+<sc-for list="{{ st.dots }}" as="d" hint-placeholder-count="8">
+<div title="{{ d.title }}" aria-label="{{ d.title }}" style="position:absolute;left:{{ d.x }};top:{{ d.y }};transform:translate(-50%,-50%);width:{{ d.size }};height:{{ d.size }};border-radius:50%;background:{{ d.bg }};color:{{ d.fg }};border:3px solid {{ d.border }};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:{{ d.fs }};text-align:center;line-height:1;box-sizing:border-box">{{ d.label }}</div>
+</sc-for>
+<div style="position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--surface2,#efe0c8);padding:4px">Public</div>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<!-- 6. RÉPÉTITIONS -->
+<sc-if value="{{ isRepetitions }}" hint-placeholder-val="{{ false }}">
+<div style="padding:4px 16px 32px;display:flex;flex-direction:column;gap:16px">
+<h1 style="margin:0;font-family:'Yeseva One',serif;font-size:34px;font-weight:400;line-height:1.05">Répétitions</h1>
+<a href="#" style="display:flex;align-items:center;justify-content:center;height:52px;border-radius:12px;background:var(--gold,#c9930a);color:var(--onGold,#2a1a12);font-weight:800;font-size:17px;text-decoration:none">Proposer des dates ↗</a>
+<p style="margin:0;font-size:15px;color:var(--muted,#5c4a44)">Sondage en cours : {{ pollLead }} en tête, {{ pollVotes }}. Jessica et Stéphane ne sont pas sur WhatsApp : tout est aussi ici.</p>
+<h2 style="margin:8px 0 0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">À venir</h2>
+<sc-for list="{{ upcoming }}" as="r" hint-placeholder-count="2">
+<article style="background:var(--surface,#f6ead8);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;border:2px solid {{ r.border }}">
+<div style="font-family:'Yeseva One',serif;font-size:24px;line-height:1.1">{{ r.when }}</div>
+<div style="font-weight:700">{{ r.place }}</div>
+<div style="font-size:15px">On travaille : {{ r.work }}</div>
+<div style="font-size:15px;color:var(--muted,#5c4a44)">{{ r.replies }}</div>
+<sc-if value="{{ r.isNext }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+<button onClick="{{ sayYes }}" aria-pressed="{{ saidYes }}" style="height:48px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ yesBg2 }};color:{{ yesFg2 }};font-weight:800;font-size:16px;cursor:pointer">{{ yesLabel }}</button>
+<button onClick="{{ sayNo }}" aria-pressed="{{ saidNo }}" style="height:48px;border-radius:12px;border:2px solid var(--grenat,#8a1538);background:{{ noBg2 }};color:{{ noFg2 }};font-weight:800;font-size:16px;cursor:pointer">{{ noLabel }}</button>
+</div>
+</sc-if>
+</article>
+</sc-for>
+<h2 style="margin:8px 0 0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Passées</h2>
+<sc-for list="{{ past }}" as="r" hint-placeholder-count="2">
+<article style="border-top:2px solid var(--line,#e3d3bb);padding:14px 0 4px;display:flex;flex-direction:column;gap:6px">
+<div style="font-family:'Yeseva One',serif;font-size:22px;line-height:1.1">{{ r.when }}</div>
+<div style="font-weight:700">{{ r.place }} · {{ r.work }}</div>
+<div style="font-size:15px"><span style="color:var(--green,#2e6b3a);font-weight:800">Présents :</span> {{ r.present }}</div>
+<div style="font-size:15px"><span style="font-weight:800">Absents :</span> {{ r.absent }}</div>
+<div style="font-size:15px;color:var(--muted,#5c4a44);border-left:0;background:var(--surface,#f6ead8);border-radius:10px;padding:10px 12px;white-space:pre-line">{{ r.report }}</div>
+</article>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- 7. VIDÉOS DES COUSINS -->
+<sc-if value="{{ isVideos }}" hint-placeholder-val="{{ false }}">
+<div style="padding:4px 16px 32px;display:flex;flex-direction:column;gap:18px">
+<h1 style="margin:0;font-family:'Yeseva One',serif;font-size:34px;font-weight:400;line-height:1.05">Vidéos des cousins</h1>
+<button onClick="{{ addVideo }}" style="height:56px;border-radius:12px;border:0;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);font-weight:800;font-size:18px;cursor:pointer">{{ addVideoLabel }}</button>
+<p style="margin:0;font-size:15px;color:var(--muted,#5c4a44)">Ces vidéos restent entre nous.</p>
+<sc-for list="{{ albums }}" as="al" hint-placeholder-count="3">
+<section style="display:flex;flex-direction:column;gap:12px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">{{ al.title }} <span style="font-family:'Nunito Sans',sans-serif;font-size:15px;color:var(--muted,#5c4a44)">{{ al.count }}</span></h2>
+<sc-for list="{{ al.videos }}" as="v" hint-placeholder-count="2">
+<article style="background:var(--surface,#f6ead8);border-radius:16px;overflow:hidden">
+<div style="aspect-ratio:16/9;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);display:flex;flex-direction:column;justify-content:flex-end;padding:14px;box-sizing:border-box"><div style="font-family:'Yeseva One',serif;font-size:24px;line-height:1">{{ v.songTitle }}</div><div style="font-variant-numeric:tabular-nums;font-size:15px;margin-top:4px">{{ v.dur }}</div></div>
+<div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;gap:8px"><div style="font-weight:800;font-size:17px">{{ v.author }} · {{ v.title }}</div><div style="font-size:14px;color:var(--muted,#5c4a44);white-space:nowrap">{{ v.date }}</div></div>
+<div style="font-size:15px">{{ v.note }}</div>
+<sc-for list="{{ v.comments }}" as="cm" hint-placeholder-count="1">
+<button style="display:flex;gap:10px;align-items:flex-start;text-align:left;background:transparent;border:0;padding:6px 0;min-height:44px;color:inherit;font:inherit;cursor:pointer;border-top:1px solid var(--line,#e3d3bb)">
+<span style="font-variant-numeric:tabular-nums;font-weight:800;color:var(--grenat,#8a1538);white-space:nowrap">à {{ cm.t }}</span>
+<span style="font-size:15px"><strong>{{ cm.by }} :</strong> {{ cm.text }}</span>
+</button>
+</sc-for>
+</div>
+</article>
+</sc-for>
+</section>
+</sc-for>
+</div>
+</sc-if>
+
+<!-- 8. JOUR J -->
+<sc-if value="{{ isJourJ }}" hint-placeholder-val="{{ false }}">
+<div style="padding:4px 16px 32px;display:flex;flex-direction:column;gap:18px">
+<h1 style="margin:0;font-family:'Yeseva One',serif;font-size:34px;font-weight:400;line-height:1.05">Jour J</h1>
+<p style="margin:0;font-size:15px;color:var(--muted,#5c4a44)">Mariage le [date], ordre de passage des cinq chorés.</p>
+<button onClick="{{ enterStage }}" style="height:56px;border-radius:12px;border:0;background:var(--gold,#c9930a);color:var(--onGold,#2a1a12);font-weight:800;font-size:18px;cursor:pointer">Mode scène — placements en grand</button>
+<ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+<sc-for list="{{ runOrder }}" as="o" hint-placeholder-count="5">
+<li style="display:grid;grid-template-columns:44px 1fr;gap:12px;padding-bottom:18px;position:relative">
+<div style="display:flex;flex-direction:column;align-items:center"><div style="width:44px;height:44px;border-radius:50%;background:var(--grenat,#8a1538);color:var(--onGrenat,#fffaf3);font-family:'Yeseva One',serif;font-size:22px;display:flex;align-items:center;justify-content:center">{{ o.n }}</div><div style="flex:1;width:3px;background:var(--line,#e3d3bb);margin-top:6px"></div></div>
+<div>
+<div style="font-weight:800;font-size:19px;line-height:1.2;padding-top:8px">{{ o.title }} <span style="font-variant-numeric:tabular-nums;font-weight:400;font-size:15px;color:var(--muted,#5c4a44)">{{ o.dur }}</span></div>
+<div style="font-size:15px;margin-top:6px"><span style="font-weight:800">Qui entre :</span> {{ o.who }}</div>
+<div style="font-size:15px"><span style="font-weight:800">D'où :</span> {{ o.from }}</div>
+<div style="font-size:15px"><span style="font-weight:800">Musique :</span> {{ o.music }}</div>
+</div>
+</li>
+</sc-for>
+</ol>
+<section aria-label="Check-list" style="display:flex;flex-direction:column;gap:8px">
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:24px;font-weight:400">Check-list</h2>
+<sc-for list="{{ checklist }}" as="ck" hint-placeholder-count="5">
+<button onClick="{{ ck.on }}" aria-pressed="{{ ck.done }}" style="display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 12px;border-radius:12px;border:2px solid var(--line,#e3d3bb);background:{{ ck.bg }};color:{{ ck.fg }};text-align:left;font:inherit;font-size:16px;cursor:pointer">
+<span style="width:28px;height:28px;border-radius:8px;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">{{ ck.mark }}</span>
+<span style="flex:1">{{ ck.label }}</span>
+<span style="font-size:13px;font-weight:800;white-space:nowrap">{{ ck.state }}</span>
+</button>
+</sc-for>
+</section>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},
+&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;entree&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;entree&quot;,&quot;accueil&quot;,&quot;chanson&quot;,&quot;repetition&quot;,&quot;placements&quot;,&quot;repetitions&quot;,&quot;videos&quot;,&quot;jourj&quot;,&quot;chansonBureau&quot;,&quot;placementsBureau&quot;],&quot;section&quot;:&quot;Écran&quot;},
+&quot;user&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Jessica&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;Alex&quot;,&quot;Catherine&quot;,&quot;Fabien&quot;,&quot;Flobert&quot;,&quot;Jessica&quot;,&quot;Josiane&quot;,&quot;Nadine&quot;,&quot;Patrice&quot;,&quot;Stéphane&quot;],&quot;section&quot;:&quot;Écran&quot;},
+&quot;song&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;kanimaa&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;varisu&quot;,&quot;yaaro&quot;,&quot;kacheri&quot;,&quot;inisai&quot;,&quot;kanimaa&quot;],&quot;section&quot;:&quot;Écran&quot;},
+&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;clair&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;clair&quot;,&quot;sombre&quot;],&quot;section&quot;:&quot;Affichage&quot;},
+&quot;scenario&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;normal&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;normal&quot;,&quot;premiere&quot;,&quot;chargement&quot;,&quot;horsligne&quot;,&quot;sansreponse&quot;,&quot;decompte&quot;,&quot;lecteur&quot;],&quot;section&quot;:&quot;États&quot;},
+&quot;reducedMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Affichage&quot;}}">
+const NAMES=['Alex','Catherine','Fabien','Flobert','Jessica','Josiane','Nadine','Patrice','Stéphane'];
+const GROUP8=NAMES.filter(n=>n!=='Nadine');
+const SONGS=[
+ {id:'varisu',title:'Celebration of Varisu',film:'Varisu, 2023',dur:168,bpm:140,dancers:GROUP8,order:1,
+  sections:[['Intro',2],['Couplet 1',4],['Refrain 1',4],['Couplet 2',4],['Refrain 2',4],['Pont',2],['Rap',4],['Final',2]],
+  tutos:[{title:'Tutoriel officiel — Celebration of Varisu',meta:'6:40 · en miroir'},{title:'Pas à pas, section par section',meta:'14:12'}]},
+ {id:'yaaro',title:'Yaaro Yaarodi',film:'Alaipayuthey, A.R. Rahman',dur:347,bpm:96,dancers:['Josiane','Catherine','Jessica'],order:2,toCreate:true,
+  createNote:'5 min 47 : il faudra couper, on vise 2 min 30 environ. La référence partagée : la danse de mariage de VrindhArjun.',
+  sections:[['Intro',2],['Partie 1',4],['Partie 2',4],['Partie 3',4],['Final',2]],tutos:[{title:'VrindhArjun — danse de mariage sur Yaaro Yaarodi',meta:'référence partagée dans le groupe · pas un tutoriel'}]},
+ {id:'kacheri',title:'Thalapathy Kacheri',film:'Jana Nayagan, 2026',dur:197,bpm:128,dancers:['Fabien','Flobert','Alex'],pending:['Patrice'],order:4,
+  sections:[['Intro',2],['Couplet 1',4],['Refrain 1',4],['Couplet 2',4],['Refrain 2',4],['Final',2]],
+  tutos:[{title:'Thalapathy Kacheri — dance cover tutorial',meta:'5:02 · en miroir'}]},
+ {id:'inisai',title:'Innisai',film:'Varalaru, A.R. Rahman, 2006',dur:252,bpm:72,dancers:['Nadine'],order:3,toCreate:true,solo:true,decided:true,
+  createNote:'Semi-classique, lent. Nadine la coupe elle-même. C\'est la seule choré formellement décidée par le groupe.',
+  sections:[['Entrée',2],['Partie 1',4],['Partie 2',4],['Final',2]],tutos:[]},
+ {id:'kanimaa',title:'Kanimaa',film:'Retro, 2025',dur:244,bpm:112,dancers:GROUP8,order:5,
+  sections:[['Intro',2],['Couplet 1',4],['Refrain 1',4],['Couplet 2',4],['Refrain 2',4],['Pont',2],['Rap',4],['Final',2]],
+  tutos:[{title:'Ahinth Vijay ft. The Officials — Kanimaa, version dansée',meta:'4:12 · en miroir · la référence du groupe'},{title:'Kanimaa, lent, compté en 8',meta:'12:30'}]},
+];
+const PROPOSED=['Maamadura','The Wedding Song','Sangeeth Celebration'];
+const POLL={lead:'samedi [date]',votes:'[n] votes'};
+SONGS.forEach(s=>{let t=0;s.sections=s.sections.map(([name,eights])=>{const d=eights*8*60/s.bpm;const o={name,eights,start:t,end:t+d,dur:d};t+=d;return o;});});
+const FORMS=[
+ [[20,30],[40,30],[60,30],[80,30],[10,68],[37,68],[63,68],[90,68]],
+ [[50,18],[38,36],[62,36],[26,54],[74,54],[14,72],[86,72],[50,72]],
+ [[12,18],[23,26],[34,34],[45,42],[56,50],[67,58],[78,66],[89,74]],
+ [[15,28],[32,28],[15,62],[32,62],[68,28],[85,28],[68,62],[85,62]],
+ [[50,14],[76,24],[88,46],[76,70],[50,80],[24,70],[12,46],[24,24]],
+ [[9,50],[21,50],[33,50],[45,50],[57,50],[69,50],[81,50],[93,50]],
+];
+const FORM_SEQ=[0,1,0,3,4,2,5,1];
+const TRIO=[[[25,55],[50,35],[75,55]],[[20,40],[50,60],[80,40]],[[50,30],[30,65],[70,65]]];
+const REHEARSALS=[
+ {id:'r1',past:true,when:'Dimanche [date] · après-midi',place:'Chez [cousin]',work:'Celebration of Varisu et Kanimaa — Intro, Couplet 1',present:['Alex','Catherine','Flobert','Josiane','Nadine','Patrice'],absent:['Fabien','Jessica','Stéphane'],report:'Intro et Couplet 1 de Varisu posés pour tout le monde.\nKanimaa Intro OK, le Refrain 1 trop rapide à 1× : on reste à 0,75×.\nNadine a montré le début d\'Innisai, très beau.'},
+ {id:'r3',past:false,next:true,poll:true,when:'Samedi [date] ? · heure à fixer',place:'Lieu à fixer — sondage en cours ('+POLL.lead+' en tête, '+POLL.votes+')',work:'Kanimaa (Refrain 1 → Rap), Thalapathy Kacheri'},
+ {id:'r4',past:false,when:'À caler après le [date]',place:'Lieu à confirmer',work:'Yaaro Yaarodi et Innisai — poser la choré'},
+];
+const VIDEOS=[
+ {id:'v1',song:'kanimaa',author:'Patrice',title:'Refrain 1 chez moi',date:'il y a 2 jours',dur:'0:48',note:'À 0,75×, face caméra. Dites-moi si le bras est bon.',comments:[{by:'Josiane',t:'0:42',text:'le bras gauche part trop tôt'},{by:'Alex',t:'0:12',text:'le tour est nickel'}]},
+ {id:'v2',song:'kanimaa',author:'Jessica',title:'Couplet 1 au ralenti',date:'il y a 4 jours',dur:'1:10',note:'Pour celles et ceux qui ont raté dimanche.',comments:[{by:'Catherine',t:'0:30',text:'merci, le pied droit enfin clair'}]},
+ {id:'v3',song:'varisu',author:'Catherine',title:'Intro + Couplet 1',date:'il y a 1 semaine',dur:'0:55',note:'Filmé en miroir, suivez tel quel.',comments:[{by:'Patrice',t:'0:20',text:'on part tous sur 8, pas sur 1'}]},
+ {id:'v4',song:'kacheri',author:'Fabien',title:'Refrain 1, essai',date:'il y a 1 semaine',dur:'0:38',note:'Pas encore propre, soyez gentils.',comments:[]},
+];
+const THEMES={
+ clair:{bg:'#fffaf3',surface:'#f6ead8',surface2:'#efe0c8',text:'#2a1a12',muted:'#5c4a44',grenat:'#8a1538',onGrenat:'#fffaf3',gold:'#c9930a',onGold:'#2a1a12',line:'#e3d3bb',green:'#2e6b3a',orange:'#b4530a'},
+ sombre:{bg:'#17121a',surface:'#241c28',surface2:'#312736',text:'#fff7ec',muted:'#cdbfb6',grenat:'#a4284c',onGrenat:'#fff7ec',gold:'#e0ab2a',onGold:'#17121a',line:'#3d3242',green:'#7fcf8c',orange:'#f0a060'},
+};
+const fmt=s=>{s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
+const durText=s=>Math.floor(s/60)+' min '+String(Math.round(s%60)).padStart(2,'0');
+function seedMastery(){const m={};SONGS.forEach((s,si)=>s.dancers.forEach((d,di)=>{m[d+'|'+s.id]=s.sections.map((_,i)=>{if(s.toCreate)return 0;const v=(di*3+i*2+si)%7;return v<3?2:v<5?1:0;});}));m['Jessica|kanimaa']=[2,2,2,2,2,1,0,0];m['Jessica|varisu']=[2,2,1,0,0,0,0,0];m['Nadine|inisai']=[0,0,0,0];return m;}
+const LABEL=['pas encore','presque','je maîtrise'];
+const GLYPH=['·','≈','✓'];
+
+class Component extends DCLogic {
+  constructor(p){super(p);this.state=this.initial(p);this.timers=[];}
+  initial(p){const sc=p.scenario??'normal';return{screen:p.screen??'entree',user:p.user??'Jessica',songId:p.song??'kanimaa',sectionIdx:0,theme:p.theme??'clair',
+    mastery:sc==='premiere'?{}:seedMastery(),attendance:(sc==='sansreponse'||sc==='premiere')?{}:{r3:{Patrice:'oui',Josiane:'oui'}},
+    playing:false,speed:1,mirror:sc==='lecteur',loop:sc==='lecteur',count:sc==='decompte'?7:null,time:0,plIdx:0,highlightMe:true,stage:false,offsets:{},checks:{},creator:null,added:false,scenario:sc};}
+  componentDidUpdate(prev){if(['screen','user','theme','scenario','song'].some(k=>prev[k]!==this.props[k])){this.clearTimers();this.setState(this.initial(this.props));}}
+  componentWillUnmount(){this.clearTimers();}
+  clearTimers(){this.timers.forEach(clearTimeout);this.timers=[];clearInterval(this.tick);this.tick=null;}
+  song(){return SONGS.find(s=>s.id===this.state.songId)||SONGS[4];}
+  go(screen,extra){this.clearTimers();this.setState({screen,playing:false,count:null,...(extra||{})});}
+  startPlay(){const s=this.song();const sec=s.sections[this.state.sectionIdx];this.clearTimers();this.setState({count:5,time:sec.start});const beat=Math.max(380,60000/s.bpm/this.state.speed);[6,7,8].forEach((n,i)=>this.timers.push(setTimeout(()=>this.setState({count:n}),beat*(i+1))));this.timers.push(setTimeout(()=>{this.setState({count:null,playing:true});this.tick=setInterval(()=>this.advance(),250);},beat*4));}
+  advance(){const s=this.song();const sec=s.sections[this.state.sectionIdx];this.setState(st=>{let t=st.time+0.25*st.speed;if(st.loop&&t>=sec.end)t=sec.start;if(t>=s.dur){clearInterval(this.tick);return{time:0,playing:false};}return{time:t};});}
+  stop(){this.clearTimers();this.setState({playing:false,count:null});}
+  setMastery(secIdx,val){const k=this.state.user+'|'+this.state.songId;this.setState(st=>{const arr=(st.mastery[k]||this.song().sections.map(()=>0)).slice();arr[secIdx]=val;return{mastery:{...st.mastery,[k]:arr}};});}
+  positions(s,idx){const n=s.dancers.length;if(n===1)return [[50,50]];if(n===3)return TRIO[idx%3];const f=FORMS[FORM_SEQ[idx%8]];return s.dancers.map((_,i)=>f[(i+idx)%8]);}
+  renderVals(){
+    const st=this.state,me=st.user,c=THEMES[st.theme]||THEMES.clair,s=this.song(),sc=st.scenario;
+    const desktop=st.screen==='chansonBureau'||st.screen==='placementsBureau';
+    const baseScreen=st.screen==='chansonBureau'?'chanson':st.screen==='placementsBureau'?'placements':st.screen;
+    const onOff=(a)=>a?{bg:c.grenat,fg:c.onGrenat}:{bg:'transparent',fg:c.grenat};
+    const gold=(a)=>a?{bg:c.gold,fg:c.onGold}:{bg:'transparent',fg:c.text};
+    const mk=(song)=>(st.mastery[me+'|'+song.id]||song.sections.map(()=>0));
+    const cur=s.sections[st.sectionIdx]||s.sections[0];
+    const prog=(song)=>{const arr=mk(song);const n=arr.filter(v=>v===2).length;return{n,total:song.sections.length};};
+    const who=(song)=>(song.solo?'solo':song.dancers.length===8?'tout le groupe (8)':song.dancers.join(', '))+(song.pending?' · '+song.pending.join(', ')+' en attente':'');
+    const songObj={...s,durText:durText(s.dur),bpmText:s.bpm+' BPM',who:who(s),hasTuto:!!s.tutos.length,createNote:s.createNote||''};
+    const myPending=!!(s.pending&&s.pending.includes(me));
+    const replies0=(r)=>{const a=st.attendance[r.id]||{};const y=Object.keys(a).filter(n=>a[n]==='oui'),n=Object.keys(a).filter(n=>a[n]==='non');return{y,n};};
+    const next=REHEARSALS.find(r=>r.next);const att=st.attendance[next.id]||{};
+    const yes=Object.keys(att).filter(n=>att[n]==='oui'),no=Object.keys(att).filter(n=>att[n]==='non');
+    const replies=!yes.length&&!no.length?'Personne n\'a encore répondu. Sois la première ou le premier.':`Déjà répondu pour le ${POLL.lead} — viennent : ${yes.join(', ')||'personne'}${no.length?' · ne peuvent pas : '+no.join(', '):''}.`;
+    const myA=att[me];
+    const sayYes=()=>this.setState(x=>({attendance:{...x.attendance,[next.id]:{...(x.attendance[next.id]||{}),[me]:'oui'}}}));
+    const sayNo=()=>this.setState(x=>({attendance:{...x.attendance,[next.id]:{...(x.attendance[next.id]||{}),[me]:'non'}}}));
+    const mySongs=SONGS.filter(x=>x.dancers.includes(me)||(x.pending||[]).includes(me)).sort((a,b)=>a.order-b.order).map(x=>{const p=prog(x);const pend=(x.pending||[]).includes(me);return{title:x.title,film:x.film,durText:durText(x.dur),who:who(x),toCreate:!!x.toCreate,hasProgress:!x.toCreate&&!pend,creators:x.dancers.join(', '),isPending:pend,pendingText:pend?'Tu as demandé à t\'ajouter — pas encore de réponse. Tu peux déjà répéter.':'',decidedText:x.decided?'La seule choré décidée par le groupe':'',isDecided:!!x.decided,pct:Math.round(100*p.n/p.total)+'%',progress:p.n===0?'rien de marqué encore':`${p.n} section${p.n>1?'s':''} sur ${p.total} maîtrisée${p.n>1?'s':''}`,open:()=>this.go('chanson',{songId:x.id,sectionIdx:0,time:0})};});
+    const songTitle=id=>SONGS.find(x=>x.id===id).title;
+    const feed=[];VIDEOS.slice(0,2).forEach(v=>feed.push({thumb:songTitle(v.song)+' · '+v.dur,head:`${v.author} a posté « ${v.title} »`,sub:songTitle(v.song)+' · '+v.date,open:()=>this.go('videos')}));
+    VIDEOS.forEach(v=>v.comments.slice(0,1).forEach(cm=>feed.push({thumb:songTitle(v.song)+' · '+cm.t,head:`${cm.by} à ${cm.t} : « ${cm.text} »`,sub:'sur la vidéo de '+v.author+' · '+songTitle(v.song),open:()=>this.go('videos')})));
+    const myMast=mk(s);const offline=sc==='horsligne';
+    const sectionRows=s.sections.map((x,i)=>{const v=myMast[i];const isCur=i===st.sectionIdx;const saved=!offline||i<4;return{num:i+1,name:x.name,counts:x.eights+' × 8',dur:fmt(x.dur),isCurrent:isCur,bg:isCur?c.surface:'transparent',border:isCur?c.grenat:c.line,offlineNote:offline?(saved?'Sur ton téléphone':'Pas enregistrée — réseau nécessaire'):'',
+      is0:v===0,is1:v===1,is2:v===2,bg0:v===0?c.surface2:'transparent',fg0:c.text,bg1:v===1?c.surface2:'transparent',fg1:c.text,bg2:v===2?c.gold:'transparent',fg2:v===2?c.onGold:c.text,
+      select:()=>{this.clearTimers();this.setState({sectionIdx:i,time:x.start,playing:false,count:null});},set0:()=>this.setMastery(i,0),set1:()=>this.setMastery(i,1),set2:()=>this.setMastery(i,2)};});
+    const gridRows=s.dancers.concat(s.pending||[]).map(d=>{const arr=st.mastery[d+'|'+s.id]||s.sections.map(()=>0);const pend=(s.pending||[]).includes(d);return{name:pend?d+' (attente)':d,weight:d===me?800:400,cells:arr.map((v,i)=>({glyph:GLYPH[v],title:`${d}, ${s.sections[i].name} : ${LABEL[v]}`,bg:v===2?c.gold:v===1?c.surface2:c.surface,fg:v===2?c.onGold:c.text}))};});
+    const gridHead=s.sections.map(x=>({short:x.name.replace('Couplet','C').replace('Refrain','R').replace('Partie','P').replace('Intro','In').replace('Final','Fin').replace('Entrée','En')}));
+    const speedsArr=[0.5,0.75,1];
+    const mkSpeeds=(dark)=>speedsArr.map(v=>{const a=st.speed===v;return{label:String(v).replace('.',',')+' ×',active:a,bg:a?(dark?'#fff7ec':c.grenat):'transparent',fg:a?(dark?'#17121a':c.onGrenat):(dark?'#fff7ec':c.grenat),on:()=>this.setState({speed:v})};});
+    const dotsFor=(song,idx,size,fs,big)=>{const pos=this.positions(song,idx);return song.dancers.map((d,i)=>{const isMe=d===me;const off=(st.offsets[song.id+'|'+idx+'|'+d])||[0,0];const hl=isMe&&st.highlightMe;return{label:big?(d.length>7?d.slice(0,6)+'.':d):d.slice(0,2),title:d,x:(pos[i][0]+off[0])+'%',y:(pos[i][1]+off[1])+'%',size:size+'px',fs:fs+'px',bg:hl?c.gold:c.grenat,fg:hl?c.onGold:c.onGrenat,border:hl?c.text:c.grenat};});};
+    const arrowsFor=(song,idx)=>{if(idx>=song.sections.length-1)return[];const a=this.positions(song,idx),b=this.positions(song,idx+1);return song.dancers.map((d,i)=>{const hl=d===me&&st.highlightMe;return{x1:a[i][0],y1:a[i][1],x2:b[i][0],y2:b[i][1],stroke:hl?c.text:c.muted,w:hl?2.5:1.2};}).filter(x=>x.x1!==x.x2||x.y1!==x.y2);};
+    const plIdx=Math.min(st.plIdx,s.sections.length-1);const plSec=s.sections[plIdx];
+    const myPos=this.positions(s,st.sectionIdx)[s.dancers.indexOf(me)];
+    const myPlaceText=myPos?`Tu es ${myPos[0]<40?'côté jardin (à gauche)':myPos[0]>60?'côté cour (à droite)':'au centre'}, ${myPos[1]<40?'au fond':myPos[1]>60?'devant':'au milieu'}.`:'Tu ne danses pas sur celle-ci.';
+    const mv=(dx,dy)=>()=>this.setState(x=>{const k=s.id+'|'+plIdx+'|'+me;const o=x.offsets[k]||[0,0];return{offsets:{...x.offsets,[k]:[o[0]+dx,o[1]+dy]}};});
+    const checks=['Tenue : saris et chemises repassés, épingles','Enceinte chargée + câble + téléphone de secours','Musiques coupées à la bonne durée (Yaaro 2:30)','Ordre de passage envoyé au DJ','Placements imprimés pour les coulisses'];
+    const dark=st.theme==='sombre';
+    const showTop=!['entree','repetition'].includes(baseScreen)&&!st.stage;
+    const titles={accueil:'Chorés du mariage',chanson:'Chorés du mariage',placements:'Placements',repetitions:'Chorés du mariage',videos:'Chorés du mariage',jourj:'Chorés du mariage'};
+    const digit=(size)=>st.count==null?null:React.createElement('div',{key:st.count,style:{fontFamily:"'Yeseva One',serif",fontSize:size,lineHeight:1,color:'#e0ab2a',animation:this.props.reducedMotion?'none':'beat .35s ease-out'}},st.count);
+    return{
+      c,frameW:desktop?'1280px':'390px',frameH:desktop?'auto':'844px',screenLabel:baseScreen,offline,showTop,isDark:dark,themeLabel:dark?'Mode clair':'Mode sombre',toggleTheme:()=>this.setState({theme:dark?'clair':'sombre'}),
+      back:()=>this.go(baseScreen==='accueil'?'entree':st.stage?'jourj':'accueil',{stage:false}),backLabel:baseScreen==='accueil'?'Changer':'← Retour',topTitle:titles[baseScreen]||'',
+      isEntree:baseScreen==='entree',isAccueil:baseScreen==='accueil',isChanson:baseScreen==='chanson',isRepet:baseScreen==='repetition',isPlacements:baseScreen==='placements',isRepetitions:baseScreen==='repetitions',isVideos:baseScreen==='videos',isJourJ:baseScreen==='jourj',
+      isDesktop:desktop,notDesktop:!desktop,
+      names:NAMES.map(n=>({name:n,pick:()=>this.go('accueil',{user:n,songId:n==='Nadine'?'inisai':'kanimaa'})})),
+      me,next:{when:next.when,place:next.place,work:next.work,replies},sayYes,sayNo,saidYes:myA==='oui',saidNo:myA==='non',
+      yesLabel:myA==='oui'?'Je viens ✓':'Je viens',noLabel:myA==='non'?'Je ne peux pas ✓':'Je ne peux pas',
+      yesBg:myA==='oui'?c.onGrenat:'transparent',yesFg:myA==='oui'?c.grenat:c.onGrenat,noBg:myA==='non'?c.onGrenat:'transparent',noFg:myA==='non'?c.grenat:c.onGrenat,
+      yesBg2:onOff(myA==='oui').bg,yesFg2:onOff(myA==='oui').fg,noBg2:onOff(myA==='non').bg,noFg2:onOff(myA==='non').fg,
+      mySongs,feed,proposed:PROPOSED.join(', '),pollLead:POLL.lead,pollVotes:POLL.votes,myPending,goPlacements:()=>this.go('placements',{plIdx:st.sectionIdx}),goRepetitions:()=>this.go('repetitions'),goVideos:()=>this.go('videos'),goJourJ:()=>this.go('jourj'),
+      song:songObj,curSection:{name:cur.name,counts:cur.eights+' × 8',dur:fmt(cur.dur)},
+      creatorBtns:s.dancers.map(d=>({label:d===st.creator?d+' s\'en occupe':d,active:st.creator===d,bg:st.creator===d?c.orange:'transparent',fg:st.creator===d?'#fffaf3':c.orange,on:()=>this.setState({creator:d})})),
+      videoTransform:st.mirror?'scaleX(-1)':'none',timeText:fmt(st.time),mirror:st.mirror,loop:st.loop,loading:sc==='chargement',counting:st.count!=null,countText:st.count==null?'':String(st.count),
+      countEl:digit('120px'),countElBig:digit('260px'),progressPct:Math.round(100*st.time/s.dur)+'%',
+      togglePlay:()=>st.playing||st.count!=null?this.stop():this.startPlay(),playLabel:st.playing?'Pause':st.count!=null?'Stop':'Lecture',
+      goRepet:()=>this.go('repetition'),leaveRepet:()=>this.go('chanson'),nextSection:()=>{this.clearTimers();const i=(st.sectionIdx+1)%s.sections.length;this.setState({sectionIdx:i,time:s.sections[i].start,playing:false,count:null});},
+      repStatus:(st.mirror?'Miroir':'Pas de miroir')+' · '+String(st.speed).replace('.',',')+' ×'+(st.loop?' · Boucle':''),
+      speeds:mkSpeeds(false),speedsDark:mkSpeeds(true),
+      toggleMirror:()=>this.setState({mirror:!st.mirror}),toggleLoop:()=>this.setState({loop:!st.loop}),mirrorState:st.mirror?'activé':'désactivé',loopState:st.loop?'activée':'désactivée',
+      mirrorBg:onOff(st.mirror).bg,mirrorFg:onOff(st.mirror).fg,loopBg:onOff(st.loop).bg,loopFg:onOff(st.loop).fg,
+      mirrorBgD:st.mirror?'#fff7ec':'transparent',mirrorFgD:st.mirror?'#17121a':'#fff7ec',loopBgD:st.loop?'#fff7ec':'transparent',loopFgD:st.loop?'#17121a':'#fff7ec',
+      sectionRows,gridCols:s.sections.length,gridHead,gridRows,miniDots:dotsFor(s,st.sectionIdx,30,12,false),myPlaceText,
+      songVideos:VIDEOS.filter(v=>v.song===s.id).map(v=>({...v,songTitle:s.title,nComments:v.comments.length+' commentaire'+(v.comments.length>1?'s':'')})),noSongVideos:!VIDEOS.some(v=>v.song===s.id),
+      stageMode:st.stage,leaveStage:()=>this.go('jourj',{stage:false}),enterStage:()=>this.go('placements',{stage:true,songId:'varisu',plIdx:0}),
+      songChips:SONGS.filter(x=>!x.solo).sort((a,b)=>a.order-b.order).map(x=>({label:x.title,active:x.id===s.id,...onOff(x.id===s.id),on:()=>this.setState({songId:x.id,plIdx:0,sectionIdx:0})})),
+      plIdx,plSelect:e=>this.setState({plIdx:Number(e.target.value)}),plPrev:()=>this.setState({plIdx:Math.max(0,plIdx-1)}),plNext:()=>this.setState({plIdx:Math.min(s.sections.length-1,plIdx+1)}),
+      sectionOpts:s.sections.map((x,i)=>({value:i,label:(i+1)+'. '+x.name+' — '+x.eights+' × 8'})),
+      plSection:{name:plSec.name,counts:plSec.eights+' × 8',range:fmt(plSec.start)+' → '+fmt(plSec.end)},
+      dots:dotsFor(s,plIdx,st.stage?68:58,st.stage?13:12,true),arrows:arrowsFor(s,plIdx),
+      plHint:plIdx<s.sections.length-1?'Les flèches montrent où chacun va à la section suivante ('+s.sections[plIdx+1].name+').':'Dernière section : on tient la pose.',
+      toggleHighlight:()=>this.setState({highlightMe:!st.highlightMe}),highlightMe:st.highlightMe,hlLabel:st.highlightMe?'Me surligner : oui':'Me surligner : non',hlBg:onOff(st.highlightMe).bg,hlFg:onOff(st.highlightMe).fg,
+      mvL:mv(-10,0),mvR:mv(10,0),mvU:mv(0,-10),mvD:mv(0,10),
+      allStages:s.sections.map((x,i)=>({num:i+1,name:x.name,counts:x.eights+' × 8',dots:dotsFor(s,i,40,12,false),arrows:arrowsFor(s,i)})),
+      upcoming:REHEARSALS.filter(r=>!r.past).map(r=>{const {y,n}=replies0(r);return{...r,isNext:!!r.next,border:r.next?c.grenat:c.surface,replies:r.next?(y.length||n.length?`Pour le ${POLL.lead} — viennent : ${y.join(', ')||'personne'}${n.length?' · ne peuvent pas : '+n.join(', '):''}`:'Personne n\'a encore répondu au sondage.'):'Date à fixer dans le sondage.'};}),
+      past:REHEARSALS.filter(r=>r.past).map(r=>({...r,present:r.present.join(', '),absent:r.absent.join(', ')})),
+      addVideo:()=>this.setState({added:true}),addVideoLabel:st.added?'Vidéo envoyée — merci !':'Ajouter ma vidéo',
+      albums:SONGS.slice().sort((a,b)=>a.order-b.order).map(x=>{const vs=VIDEOS.filter(v=>v.song===x.id);return{title:x.title,count:vs.length?vs.length+' vidéo'+(vs.length>1?'s':''):'aucune vidéo encore',videos:vs.map(v=>({...v,songTitle:x.title}))};}).filter(a=>a.videos.length),
+      runOrder:[
+        {n:1,title:'Celebration of Varisu',dur:'2:48',who:'tout le groupe (8)',from:'par la gauche, en deux lignes',music:'Patrice lance'},
+        {n:2,title:'Yaaro Yaarodi',dur:'≈ 2:30 (coupée)',who:'Josiane, Catherine, Jessica',from:'par la droite',music:'Alex lance'},
+        {n:3,title:'Innisai',dur:'coupée par Nadine',who:'Nadine, en solo',from:'du fond, lumière basse',music:'Flobert lance'},
+        {n:4,title:'Thalapathy Kacheri',dur:'3:17',who:'Fabien, Flobert, Alex',from:'par la gauche',music:'Patrice lance'},
+        {n:5,title:'Kanimaa',dur:'4:04',who:'tout le groupe (8)',from:'des deux côtés en même temps',music:'Stéphane lance'},
+      ],
+      checklist:checks.map((label,i)=>{const d=!!st.checks[i];return{label,done:d,mark:d?'✓':'',state:d?'fait':'à faire',bg:d?c.surface:'transparent',fg:c.text,on:()=>this.setState(x=>({checks:{...x.checks,[i]:!x.checks[i]}}))};}),
+    };
+  }
+}
+</script>
+</body>
+</html>

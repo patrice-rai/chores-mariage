@@ -1,0 +1,1990 @@
+/*
+ * Composants (app/vues/composants/*.php), un bloc par composant, BEM en français. Maquette : planches 1v
+ * (Composants) et 1w (Fondations). Aucune couleur ici : seulement les variables de jetons.css. Positions et
+ * largeurs sans attribut style : classes col-N, lig-N, p-N (pas de 5 %).
+ */
+
+/* Largeurs par pas de 5 % (barres de progression). */
+.p-0 { width: 0; }
+.p-1 { width: 5%; }
+.p-2 { width: 10%; }
+.p-3 { width: 15%; }
+.p-4 { width: 20%; }
+.p-5 { width: 25%; }
+.p-6 { width: 30%; }
+.p-7 { width: 35%; }
+.p-8 { width: 40%; }
+.p-9 { width: 45%; }
+.p-10 { width: 50%; }
+.p-11 { width: 55%; }
+.p-12 { width: 60%; }
+.p-13 { width: 65%; }
+.p-14 { width: 70%; }
+.p-15 { width: 75%; }
+.p-16 { width: 80%; }
+.p-17 { width: 85%; }
+.p-18 { width: 90%; }
+.p-19 { width: 95%; }
+.p-20 { width: 100%; }
+
+/* --- Barre haute et bascule de thème ------------------------------------------------------------------ */
+.barre-haute {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-8);
+  width: 100%;
+  max-width: var(--largeur-page);
+  margin: 0 auto;
+  min-height: var(--h-60);
+  padding: var(--e-8) var(--e-12);
+}
+
+.page-large .barre-haute,
+.barre-haute:has(+ .page .contenu--large) {
+  max-width: var(--largeur-large);
+}
+
+.barre-haute__formulaire {
+  margin: 0;
+}
+
+.barre-haute__titre {
+  flex: 1 1 8rem;
+  min-width: 0;
+  font-family: var(--police-titre);
+  font-size: var(--t-barre);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.bascule-theme {
+  margin: 0;
+}
+
+.bascule-theme__bouton {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--h-44);
+  min-width: var(--h-44);
+  padding: var(--e-4) var(--e-12);
+  border: var(--trait) solid var(--surface-2);
+  border-radius: var(--r-12);
+  background: var(--surface-2);
+  color: var(--texte);
+  font-weight: 700;
+  font-size: var(--t-mini);
+  line-height: 1.1;
+}
+
+.bascule-theme__etat {
+  font-weight: 400;
+}
+
+.bascule-theme__bouton:hover,
+.bascule-theme__bouton:focus-visible {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.bascule-theme__bouton:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+.bascule-theme__bouton--vers-clair {
+  display: none;
+}
+
+:root[data-theme="sombre"] .bascule-theme__bouton--vers-sombre {
+  display: none;
+}
+
+:root[data-theme="sombre"] .bascule-theme__bouton--vers-clair {
+  display: inline-flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="clair"]) .bascule-theme__bouton--vers-sombre {
+    display: none;
+  }
+
+  :root:not([data-theme="clair"]) .bascule-theme__bouton--vers-clair {
+    display: inline-flex;
+  }
+}
+
+/* --- Bouton prénom ------------------------------------------------------------------------------------- */
+.bouton-prenom {
+  min-height: var(--h-72);
+  padding: var(--e-4);
+  border-radius: var(--r-14);
+  border: var(--trait) solid transparent;
+  background: var(--surface);
+  color: var(--texte);
+  font-weight: 800;
+  font-size: var(--t-prenom);
+  overflow-wrap: anywhere;
+}
+
+.bouton-prenom:hover,
+.bouton-prenom:focus-visible {
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+.bouton-prenom:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+/* --- Bannière hors ligne ------------------------------------------------------------------------------- */
+.banniere-hors-ligne {
+  padding: var(--e-8) var(--e-16);
+  background: var(--texte);
+  color: var(--fond);
+  font-size: var(--t-petit);
+  font-weight: 700;
+}
+
+/* Zone d'état toujours présente (annoncée quand le texte arrive) ; vide, elle ne prend aucune place. */
+.banniere-hors-ligne:empty {
+  padding: 0;
+}
+
+/* --- Carte « Prochaine répétition » et présence ------------------------------------------------------- */
+.carte-repetition {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  padding: var(--e-16);
+  border-radius: var(--r-16);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+}
+
+.carte-repetition__etiquette {
+  font-family: var(--police-texte);
+  font-size: var(--t-mini);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.carte-repetition__quand {
+  font-family: var(--police-titre);
+  font-size: var(--t-carte-repetition);
+  line-height: 1.1;
+}
+
+.carte-repetition__lieu {
+  font-weight: 700;
+}
+
+.carte-repetition__travail,
+.carte-repetition__reponses {
+  font-size: var(--t-petit);
+}
+
+.carte-repetition__repli {
+  padding: var(--e-8) var(--e-12);
+  border: var(--trait) dashed var(--sur-grenat);
+  border-radius: var(--r-12);
+  font-size: var(--t-petit);
+  font-weight: 700;
+}
+
+.carte-repetition__sondage {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-4);
+  min-height: var(--h-44);
+  padding: 0 var(--e-16);
+  border-radius: var(--r-12);
+  background: var(--sur-grenat);
+  color: var(--grenat-inverse);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.presence {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.presence__groupe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: var(--e-12);
+}
+
+.presence__bouton {
+  min-height: var(--h-52);
+  padding: var(--e-4) var(--e-8);
+  border-radius: var(--r-12);
+  border: var(--trait) solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: var(--t-bouton);
+}
+
+.presence__bouton[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--fond);
+}
+
+.presence--grenat .presence__bouton {
+  border-color: var(--sur-grenat);
+  color: var(--sur-grenat);
+}
+
+.presence--grenat .presence__bouton[aria-pressed="true"] {
+  background: var(--sur-grenat);
+  color: var(--grenat-inverse);
+}
+
+.presence__bouton:hover,
+.presence__bouton:focus-visible {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.presence__bouton:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+.presence__etat {
+  font-size: var(--t-petit);
+}
+
+/* --- Carte de chanson et progression ------------------------------------------------------------------- */
+.carte-chanson {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  padding: var(--e-16);
+  border-radius: var(--r-16);
+  background: var(--surface);
+}
+
+.carte-chanson__tete {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--e-4) var(--e-12);
+}
+
+.carte-chanson__titre {
+  font-family: var(--police-texte);
+  font-weight: 800;
+  font-size: var(--t-titre-carte);
+  overflow-wrap: anywhere;
+}
+
+.carte-chanson__duree,
+.carte-chanson__infos {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.carte-chanson__a-creer,
+.carte-chanson__decidee,
+.carte-chanson__attente {
+  font-weight: 800;
+  font-size: var(--t-petit);
+}
+
+.carte-chanson__a-creer {
+  color: var(--orange-texte);
+}
+
+.carte-chanson__decidee {
+  color: var(--vert);
+}
+
+.carte-chanson__attente {
+  padding: var(--e-8) var(--e-12);
+  border: var(--trait) solid var(--filet);
+  border-radius: var(--r-10);
+}
+
+.carte-chanson__action {
+  margin-top: var(--e-4);
+  font-size: var(--t-corps);
+}
+
+.progression {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-4) var(--e-12);
+}
+
+.progression__piste {
+  flex: 1 1 6rem;
+  height: 0.5rem;
+  border-radius: var(--r-6);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.progression__barre {
+  height: 100%;
+  background: var(--or);
+}
+
+.progression__texte {
+  font-size: var(--t-petit);
+  font-weight: 700;
+}
+
+/* --- Encarts ------------------------------------------------------------------------------------------- */
+.encart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  padding: var(--e-12) var(--e-16);
+  border-radius: var(--r-16);
+}
+
+.encart--pointille {
+  border: var(--trait) dashed var(--filet);
+}
+
+.encart--pointille .encart__titre {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.encart--orange {
+  border: var(--trait-fort) solid var(--orange);
+}
+
+.encart--orange .encart__titre {
+  color: var(--orange-texte);
+  font-size: var(--t-prenom);
+}
+
+.encart--attente {
+  border: var(--trait) solid var(--filet);
+  border-radius: var(--r-10);
+  font-weight: 800;
+  font-size: var(--t-petit);
+}
+
+.encart__titre {
+  font-weight: 800;
+}
+
+.encart__note {
+  color: var(--secondaire);
+  font-size: var(--t-mini);
+}
+
+.encart__formulaire {
+  margin: 0;
+}
+
+.encart__groupe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-8);
+}
+
+.encart__prenom {
+  min-height: var(--h-44);
+  padding: 0 var(--e-12);
+  border-radius: var(--r-12);
+  border: var(--trait) solid var(--orange);
+  background: transparent;
+  color: var(--orange-texte);
+  font-weight: 800;
+  font-size: var(--t-bouton);
+}
+
+.encart__prenom[aria-pressed="true"] {
+  background: var(--orange);
+  color: var(--sur-orange);
+}
+
+.encart__prenom:hover,
+.encart__prenom:focus-visible {
+  background: var(--or);
+  border-color: var(--focus-filet);
+  color: var(--sur-or);
+}
+
+/* --- Fil « Ce qui bouge » ------------------------------------------------------------------------------ */
+.fil {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fil__element {
+  padding-block: var(--e-4);
+  border-bottom: 1px solid var(--filet);
+}
+
+.fil__lien {
+  display: flex;
+  align-items: center;
+  gap: var(--e-12);
+  min-height: var(--h-56);
+  padding: var(--e-8) 0 var(--e-12);
+  color: inherit;
+  text-decoration: none;
+}
+
+.fil__vignette {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  width: 4.5rem;
+  min-height: 3rem;
+  padding: var(--e-4);
+  border-radius: var(--r-8);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+  font-size: var(--t-mini);
+  font-weight: 800;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.fil__textes {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.fil__titre {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.fil__lien:hover .fil__titre {
+  text-decoration: underline;
+}
+
+.fil__lien:focus-visible .fil__detail {
+  color: var(--sur-or);
+}
+
+.fil__detail,
+.fil__vide {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+/* --- Lecteur ------------------------------------------------------------------------------------------- */
+.lecteur {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+  min-width: 0;
+}
+
+.lecteur__ecran {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-16);
+  overflow: hidden;
+  background: var(--grenat);
+  color: var(--sur-grenat);
+}
+
+.lecteur__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--grenat);
+}
+
+/* Miroir : la vidéo seule est retournée, jamais les surimpressions. */
+.lecteur--miroir .lecteur__video {
+  transform: scaleX(-1);
+}
+
+/* Sans vidéo (et dans les illustrations) : l'aplat est dans le flux et l'écran grandit avec son texte (16/9 reste la
+   hauteur minimale), pour que rien ne soit coupé quand le texte est agrandi. */
+.lecteur__ecran--aplat {
+  overflow: visible;
+}
+
+/* Le badge « Miroir activé » occupe le coin haut : le texte de l'aplat passe dessous. */
+.lecteur--miroir .lecteur__aplat {
+  padding-top: calc(var(--e-40) + var(--e-8));
+}
+
+.lecteur__aplat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--e-4);
+  padding: var(--e-16) var(--e-16) var(--e-24);
+}
+
+.lecteur__aplat-titre {
+  font-family: var(--police-titre);
+  font-size: var(--t-lecteur);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.lecteur__aplat-texte {
+  font-size: var(--t-petit);
+  font-weight: 700;
+}
+
+.lecteur__badge-miroir {
+  position: absolute;
+  top: var(--e-12);
+  left: var(--e-12);
+  padding: var(--e-4) var(--e-12);
+  border-radius: var(--r-8);
+  background: var(--or);
+  color: var(--sur-or);
+  font-weight: 800;
+  font-size: var(--t-mini);
+}
+
+/* Temps et section, sous la vidéo (dans l'écran, ils recouvraient le badge quand le texte est agrandi). */
+.lecteur__infos {
+  margin-top: calc(-1 * var(--e-4));
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.lecteur__voile {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-8);
+  padding: var(--e-16);
+  background: var(--voile);
+  color: var(--sur-voile);
+  text-align: center;
+  font-weight: 800;
+  font-size: var(--t-barre);
+}
+
+.lecteur__voile--decompte {
+  gap: var(--e-4);
+  padding: var(--e-4);
+}
+
+/* Deux classes : l'emporte sur .decompte__chiffre (bloc du décompte autonome, plus bas). */
+.lecteur__voile-texte {
+  font-size: min(var(--t-barre), 6vw);
+}
+
+.lecteur__voile .lecteur__chiffre {
+  font-family: var(--police-titre);
+  font-weight: 400;
+  /* L'écran fait 16/9 de la largeur de la page : 28vw garde le chiffre dans l'écran même avec le texte agrandi. */
+  font-size: min(var(--t-decompte), 28vw);
+  line-height: 1;
+  color: var(--decompte);
+}
+
+.lecteur__decompte-texte {
+  font-size: var(--t-petit);
+}
+
+.lecteur__progression {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.375rem;
+  background: var(--voile);
+}
+
+.lecteur__position {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--or);
+}
+
+.lecteur__borne {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: var(--trait) solid var(--sur-voile);
+  border-right: var(--trait) solid var(--sur-voile);
+}
+
+.lecteur__message:empty {
+  padding: 0;
+  border: 0;
+}
+
+.lecteur__message {
+  padding: var(--e-8) var(--e-12);
+  border-left: 4px solid var(--orange);
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.lecteur__commandes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.lecteur__rangee {
+  display: grid;
+  gap: var(--e-8);
+}
+
+/* Colonnes qui passent à la ligne quand le texte est très agrandi (plus de mots coupés en morceaux). */
+.lecteur__rangee--deux,
+.lecteur__rangee--quatre {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+}
+
+.lecteur__rangee--trois {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 5.5rem), 1fr));
+}
+
+.lecteur__note {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.commande {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--h-56);
+  padding: var(--e-4) var(--e-8);
+  border-radius: var(--r-12);
+  border: var(--trait) solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: var(--t-prenom);
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Choisi : plein « accent » (grenat en clair, blanc cassé en sombre, où le grenat éclairci n'atteint pas 3:1) et
+   « ✓ » écrit. */
+.commande[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--fond);
+}
+
+.commande__coche {
+  display: none;
+}
+
+.commande[aria-pressed="true"] .commande__coche {
+  display: inline;
+}
+
+.commande--vitesse {
+  flex-direction: row;
+  gap: var(--e-4);
+  white-space: nowrap;
+}
+
+.commande--lecture {
+  min-height: var(--h-64);
+  border-radius: var(--r-14);
+  border-color: var(--or);
+  background: var(--or);
+  color: var(--sur-or);
+  font-size: var(--t-barre);
+}
+
+.commande--plein-ecran {
+  min-height: var(--h-64);
+  border-radius: var(--r-14);
+  border-color: var(--grenat);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+}
+
+.commande__etat {
+  font-weight: 400;
+  font-size: var(--t-mini);
+}
+
+.commande:hover:not(:disabled),
+.commande:focus-visible {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.commande:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+.commande:disabled {
+  border-style: dashed;
+  border-color: var(--secondaire);
+  background: transparent;
+  color: var(--secondaire);
+}
+
+.lecteur__raccourcis {
+  font-size: var(--t-petit);
+}
+
+/* Résumé gardé en élément de liste : le triangle d'ouverture reste visible. */
+.lecteur__raccourcis-titre {
+  display: list-item;
+  padding-block: var(--e-12);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lecteur__raccourcis .bouton {
+  margin: var(--e-8) 0;
+}
+
+.lecteur__touches {
+  display: grid;
+  gap: var(--e-4);
+}
+
+.lecteur__touches div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--e-8);
+}
+
+.lecteur__touches dt {
+  min-width: 5rem;
+  font-weight: 800;
+}
+
+/* Mode répétition (maquette 1k, 1l) : toujours sombre, vidéo en haut, commandes de 72 et 60 px. */
+.page-repetition .page {
+  max-width: none;
+}
+
+.repetition {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.lecteur--repetition {
+  flex: 1;
+  gap: var(--e-12);
+  padding-bottom: var(--e-12);
+}
+
+/* Écran à hauteur connue (45 % de la fenêtre, 15rem au moins) : le chiffre du décompte se règle dessus et n'est
+   jamais coupé, même sur un petit téléphone ou avec le texte agrandi. */
+.lecteur--repetition .lecteur__ecran {
+  flex: none;
+  aspect-ratio: auto;
+  height: max(15rem, 45vh);
+  border-radius: 0;
+}
+
+.lecteur--repetition .lecteur__video {
+  position: absolute;
+  inset: 0;
+}
+
+/* Répétition sans vidéo : l'aplat, puis section et statut, l'un sous l'autre (jamais l'un sur l'autre). */
+.lecteur--repetition .lecteur__ecran--aplat {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: max(15rem, 45vh);
+}
+
+.lecteur--repetition .lecteur__ecran--aplat .lecteur__surimpression {
+  position: static;
+  padding: var(--e-12) var(--e-12) calc(var(--e-12) + 0.5rem);
+}
+
+.lecteur--repetition .lecteur__message,
+.lecteur--repetition .lecteur__commandes {
+  margin: 0 var(--e-12);
+}
+
+/* En répétition, le statut écrit déjà « Miroir » : le badge recouvrirait le nom de la section. */
+.lecteur--repetition .lecteur__badge-miroir {
+  display: none !important;
+}
+
+.lecteur__surimpression {
+  position: absolute;
+  top: var(--e-12);
+  left: var(--e-12);
+  right: var(--e-12);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--e-8);
+}
+
+.lecteur__section-info,
+.lecteur__statut {
+  padding: var(--e-8) var(--e-12);
+  border-radius: var(--r-12);
+  background: var(--voile);
+  color: var(--sur-voile);
+}
+
+.lecteur__section-nom {
+  overflow-wrap: anywhere;
+  font-family: var(--police-titre);
+  font-size: var(--t-lecteur);
+  line-height: 1;
+}
+
+.lecteur__section-comptes {
+  font-size: var(--t-barre);
+  font-weight: 800;
+}
+
+.lecteur__statut {
+  font-size: var(--t-prenom);
+  font-weight: 800;
+  text-align: right;
+}
+
+.lecteur--repetition .lecteur__chiffre {
+  font-size: min(var(--t-decompte-plein), calc(max(15rem, 45vh) - 4rem));
+}
+
+.lecteur--repetition .lecteur__decompte-texte {
+  font-size: var(--t-barre);
+}
+
+.lecteur--repetition .lecteur__progression {
+  height: 0.5rem;
+}
+
+.lecteur--repetition .commande {
+  min-height: var(--h-60);
+  border-color: var(--texte);
+  color: var(--texte);
+}
+
+.lecteur--repetition .lecteur__rangee--trois .commande {
+  font-size: var(--t-frise);
+}
+
+.lecteur--repetition .commande[aria-pressed="true"] {
+  background: var(--texte);
+  color: var(--fond);
+}
+
+.lecteur--repetition .commande--lecture {
+  min-height: var(--h-72);
+  border-color: var(--or);
+  background: var(--or);
+  color: var(--sur-or);
+  font-size: var(--t-repetition-commande);
+}
+
+.lecteur--repetition .commande--suivante {
+  min-height: var(--h-72);
+  border-radius: var(--r-14);
+  border-color: var(--texte);
+  background: var(--texte);
+  color: var(--fond);
+  font-size: var(--t-barre);
+}
+
+.lecteur--repetition .commande:hover:not(:disabled),
+.lecteur--repetition .commande:focus-visible {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.lecteur--repetition .commande:disabled {
+  border-style: dashed;
+  border-color: var(--secondaire);
+  background: transparent;
+  color: var(--secondaire);
+}
+
+.lecteur--repetition .commande:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+@media (min-width: 40rem) {
+  .lecteur__rangee--quatre {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .lecteur--repetition {
+    width: 100%;
+    max-width: var(--largeur-video-repetition);
+    margin: 0 auto;
+    padding-top: var(--e-16);
+  }
+
+  /* Hauteur de l'écran : ce que laissent les commandes, 15rem au moins ; le chiffre tient dans l'écran, que la
+     limite vienne de la hauteur ou de la largeur. */
+  .lecteur--repetition .lecteur__ecran {
+    width: min(100%, max(calc(15rem * 16 / 9), calc((100vh - 320px) * 16 / 9)));
+    height: auto;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-16);
+  }
+
+  .lecteur--repetition .lecteur__chiffre {
+    font-size: min(
+      var(--t-decompte-plein),
+      calc(max(15rem, 100vh - 320px) - 4rem),
+      calc(min(var(--largeur-video-repetition), 100vw) * 9 / 16 - 4rem)
+    );
+  }
+}
+
+/* --- Page d'une chanson et sections -------------------------------------------------------------------- */
+.page-chanson {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--e-24) var(--e-32);
+}
+
+.page-chanson__principal {
+  flex: 1 1 35rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-24);
+}
+
+.page-chanson__cote {
+  flex: 1 1 22.5rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-24);
+}
+
+.page-chanson__infos {
+  margin-top: var(--e-4);
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.sections__titre {
+  font-family: var(--police-titre);
+  font-size: var(--t-h2);
+}
+
+.sections__aide {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.sections__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.ligne-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  padding: var(--e-8) var(--e-12);
+  border-radius: var(--r-14);
+  border: var(--trait) solid var(--filet);
+}
+
+.ligne-section--courante {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.ligne-section__choisir {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-4) var(--e-12);
+  min-height: var(--h-44);
+  color: inherit;
+  text-decoration: none;
+}
+
+.ligne-section__choisir:hover .ligne-section__nom {
+  text-decoration: underline;
+}
+
+.ligne-section__numero {
+  width: 1.75rem;
+  font-family: var(--police-titre);
+  font-size: var(--t-barre);
+  text-align: center;
+}
+
+.ligne-section__nom {
+  flex: 1 1 6rem;
+  min-width: 0;
+  font-weight: 800;
+  font-size: var(--t-prenom);
+  overflow-wrap: anywhere;
+}
+
+.ligne-section__comptes {
+  font-size: var(--t-petit);
+  white-space: nowrap;
+}
+
+.ligne-section__en-cours {
+  padding: 0 var(--e-8);
+  border-radius: var(--r-8);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+  font-size: var(--t-mini);
+  font-weight: 800;
+}
+
+.ligne-section__niveaux {
+  margin: 0;
+}
+
+.ligne-section__groupe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 6rem), 1fr));
+  gap: var(--e-8);
+}
+
+.niveau {
+  min-height: var(--h-44);
+  padding: var(--e-4);
+  border-radius: var(--r-10);
+  border: var(--trait) solid var(--filet);
+  background: transparent;
+  color: var(--texte);
+  font-weight: 700;
+  font-size: var(--t-mini);
+  line-height: 1.15;
+}
+
+.niveau[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--surface-2);
+  font-weight: 800;
+}
+
+.niveau--2[aria-pressed="true"] {
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+/* Survol et focus : surface et filet sombre, jamais l'or (réservé à « Je maîtrise » choisi). */
+.niveau:hover,
+.niveau:focus-visible {
+  border-color: var(--focus-filet);
+  background: var(--surface-2);
+  color: var(--texte);
+}
+
+.niveau--2[aria-pressed="true"]:hover,
+.niveau--2[aria-pressed="true"]:focus-visible {
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+.niveau:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+/* --- Scène de placements et mini-scène ----------------------------------------------------------------- */
+.scene {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+  min-width: 0;
+}
+
+/* Étiquette, champ sur toute la largeur, puis ← Afficher → (ordre visuel = ordre du clavier) ; avec un texte très
+   agrandi, Afficher passe à la ligne au lieu d'écraser les flèches. */
+.scene__navigation {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-8);
+}
+
+.scene__fleche-section {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--h-56);
+  height: var(--h-56);
+  border-radius: var(--r-12);
+  background: var(--surface-2);
+  color: var(--texte);
+  font-weight: 800;
+  font-size: var(--t-frise);
+  text-decoration: none;
+}
+
+.scene__fleche-section--inactive {
+  border: var(--trait) dashed var(--filet);
+  background: transparent;
+  color: var(--secondaire);
+}
+
+.scene__etiquette {
+  flex-basis: 100%;
+  color: var(--secondaire);
+  font-size: var(--t-mini);
+  font-weight: 700;
+}
+
+.scene__select {
+  flex: 1 1 100%;
+  min-width: 0;
+  min-height: var(--h-56);
+  padding: 0 var(--e-8);
+  font-weight: 800;
+}
+
+.scene__afficher {
+  flex: 1 1 6rem;
+  min-height: var(--h-56);
+}
+
+.scene__tete {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--e-4) var(--e-12);
+}
+
+.scene__titre {
+  font-family: var(--police-titre);
+  font-size: var(--t-h2);
+}
+
+.scene__comptes,
+.scene__aide {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.scene__plateau,
+.mini-scene__plateau {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  grid-template-rows: repeat(20, minmax(0, 1fr));
+  grid-auto-columns: 0;
+  grid-auto-rows: 0;
+  aspect-ratio: 1 / 1;
+  border: var(--trait) solid var(--filet);
+  border-radius: var(--r-16);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.mini-scene__plateau {
+  aspect-ratio: 2 / 1;
+  border-radius: var(--r-14);
+}
+
+.scene__dessin {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--secondaire);
+}
+
+.scene__quadrillage {
+  stroke: var(--filet);
+  stroke-width: 1;
+}
+
+.scene__deplacement {
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.scene__deplacement--moi {
+  stroke: var(--texte);
+  stroke-width: 2.5;
+}
+
+/* Ancre de taille nulle posée sur la ligne de grille N (N × 5 %) ; le point est centré dessus. */
+.scene__ancre {
+  position: relative;
+  z-index: 1;
+  width: 0;
+  height: 0;
+}
+
+.col-0 { grid-column-start: 1; }
+.col-1 { grid-column-start: 2; }
+.col-2 { grid-column-start: 3; }
+.col-3 { grid-column-start: 4; }
+.col-4 { grid-column-start: 5; }
+.col-5 { grid-column-start: 6; }
+.col-6 { grid-column-start: 7; }
+.col-7 { grid-column-start: 8; }
+.col-8 { grid-column-start: 9; }
+.col-9 { grid-column-start: 10; }
+.col-10 { grid-column-start: 11; }
+.col-11 { grid-column-start: 12; }
+.col-12 { grid-column-start: 13; }
+.col-13 { grid-column-start: 14; }
+.col-14 { grid-column-start: 15; }
+.col-15 { grid-column-start: 16; }
+.col-16 { grid-column-start: 17; }
+.col-17 { grid-column-start: 18; }
+.col-18 { grid-column-start: 19; }
+.col-19 { grid-column-start: 20; }
+.col-20 { grid-column-start: 21; }
+.lig-0 { grid-row-start: 1; }
+.lig-1 { grid-row-start: 2; }
+.lig-2 { grid-row-start: 3; }
+.lig-3 { grid-row-start: 4; }
+.lig-4 { grid-row-start: 5; }
+.lig-5 { grid-row-start: 6; }
+.lig-6 { grid-row-start: 7; }
+.lig-7 { grid-row-start: 8; }
+.lig-8 { grid-row-start: 9; }
+.lig-9 { grid-row-start: 10; }
+.lig-10 { grid-row-start: 11; }
+.lig-11 { grid-row-start: 12; }
+.lig-12 { grid-row-start: 13; }
+.lig-13 { grid-row-start: 14; }
+.lig-14 { grid-row-start: 15; }
+.lig-15 { grid-row-start: 16; }
+.lig-16 { grid-row-start: 17; }
+.lig-17 { grid-row-start: 18; }
+.lig-18 { grid-row-start: 19; }
+.lig-19 { grid-row-start: 20; }
+.lig-20 { grid-row-start: 21; }
+
+.scene__point,
+.mini-scene__point {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-rond);
+  border: var(--trait-fort) solid var(--grenat);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+  font-weight: 800;
+  font-size: var(--t-mini);
+  line-height: 1;
+}
+
+.scene__point {
+  width: 3.625rem;
+  height: 3.625rem;
+}
+
+.scene--grand .scene__point {
+  width: 4.25rem;
+  height: 4.25rem;
+}
+
+.mini-scene__point {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-width: var(--trait);
+}
+
+.scene__point--moi,
+.mini-scene__point--moi {
+  border-color: var(--texte);
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+.scene__public {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: var(--e-4);
+  background: var(--surface-2);
+  font-size: var(--t-mini);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.scene__liste-titre {
+  font-family: var(--police-texte);
+  font-weight: 800;
+  font-size: var(--t-corps);
+}
+
+.scene__liste {
+  margin: 0;
+  padding-left: var(--e-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+  font-size: var(--t-petit);
+}
+
+.scene__liste-moi {
+  font-weight: 700;
+}
+
+.scene__options,
+.scene__deplacer {
+  margin: 0;
+}
+
+.scene__surligner {
+  width: 100%;
+  min-height: var(--h-52);
+  font-size: var(--t-corps);
+}
+
+.scene__groupe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 2.75rem), 1fr));
+  gap: var(--e-8);
+}
+
+.scene__legende {
+  padding: 0;
+  margin-bottom: var(--e-8);
+  font-weight: 700;
+  font-size: var(--t-petit);
+}
+
+.scene__bouton {
+  min-height: var(--h-48);
+  border-radius: var(--r-10);
+  border: var(--trait) solid var(--surface-2);
+  background: var(--surface-2);
+  color: var(--texte);
+  font-weight: 800;
+  font-size: var(--t-barre);
+}
+
+.scene__bouton:hover,
+.scene__bouton:focus-visible,
+.scene__fleche-section:hover {
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+.scene__bouton:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+.mini-scene {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.mini-scene__texte {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.mini-scene__lien {
+  align-self: flex-start;
+}
+
+/* --- Grille « Qui maîtrise quoi » ---------------------------------------------------------------------- */
+.grille-maitrise {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  min-width: 0;
+}
+
+.grille-maitrise__legende {
+  color: var(--secondaire);
+  font-size: var(--t-mini);
+}
+
+.grille-maitrise__table {
+  border-collapse: separate;
+  border-spacing: 3px;
+  min-width: 100%;
+  font-size: var(--t-mini);
+}
+
+.grille-maitrise__table caption {
+  padding-bottom: var(--e-4);
+  text-align: left;
+  font-weight: 700;
+}
+
+.grille-maitrise__table thead th {
+  padding: 0 var(--e-4);
+  color: var(--secondaire);
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.grille-maitrise__table thead th:first-child {
+  text-align: left;
+}
+
+.grille-maitrise__table tbody th {
+  padding-right: var(--e-8);
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.grille-maitrise__moi th {
+  font-weight: 800;
+}
+
+.grille-maitrise__case {
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: var(--r-6);
+  font-weight: 800;
+  font-size: var(--t-bouton);
+  text-align: center;
+}
+
+.grille-maitrise__case--0 {
+  background: var(--surface);
+}
+
+.grille-maitrise__case--1 {
+  background: var(--surface-2);
+}
+
+.grille-maitrise__case--2 {
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+/* --- Lien tutoriel ------------------------------------------------------------------------------------- */
+.lien-tutoriel {
+  margin-block: var(--e-4);
+  display: flex;
+  align-items: center;
+  gap: var(--e-12);
+  min-height: var(--h-56);
+  padding: var(--e-8) 0;
+  border-bottom: 1px solid var(--filet);
+  color: inherit;
+  text-decoration: none;
+}
+
+.lien-tutoriel__textes {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lien-tutoriel__titre {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.lien-tutoriel:hover .lien-tutoriel__titre {
+  text-decoration: underline;
+}
+
+.lien-tutoriel__infos {
+  color: var(--secondaire);
+  font-size: var(--t-mini);
+}
+
+.lien-tutoriel__cible {
+  color: var(--lien);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.lien-tutoriel:focus-visible .lien-tutoriel__infos,
+.lien-tutoriel:focus-visible .lien-tutoriel__cible {
+  color: var(--sur-or);
+}
+
+/* --- Carte vidéo et commentaires ----------------------------------------------------------------------- */
+.carte-video {
+  border-radius: var(--r-16);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.carte-video__vignette:focus-visible {
+  /* La carte coupe ce qui dépasse : le contour se dessine à l'intérieur. */
+  outline-offset: -5px;
+}
+
+.carte-video__vignette {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 16 / 9;
+  padding: var(--e-16);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+  text-decoration: none;
+}
+
+.carte-video__chanson {
+  font-family: var(--police-titre);
+  font-size: var(--t-h2);
+  line-height: 1;
+}
+
+.carte-video__duree {
+  margin-top: var(--e-4);
+  font-size: var(--t-petit);
+}
+
+.carte-video__corps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  padding: var(--e-12) var(--e-16);
+}
+
+.carte-video__tete {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--e-4) var(--e-8);
+}
+
+.carte-video__titre {
+  font-family: var(--police-texte);
+  font-weight: 800;
+  font-size: var(--t-corps);
+  overflow-wrap: anywhere;
+}
+
+.carte-video__date,
+.carte-video__sans-commentaire {
+  color: var(--secondaire);
+  font-size: var(--t-mini);
+}
+
+.carte-video__note {
+  overflow-wrap: anywhere;
+  font-size: var(--t-petit);
+}
+
+.carte-video__format {
+  align-self: flex-start;
+  padding: 0 var(--e-8);
+  border: var(--trait) solid var(--orange);
+  border-radius: var(--r-8);
+  color: var(--orange-texte);
+  font-size: var(--t-mini);
+  font-weight: 800;
+}
+
+.commentaire {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--e-12);
+  padding: var(--e-4) 0;
+  border-top: 1px solid var(--filet);
+}
+
+.commentaire__temps {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--h-44);
+  color: var(--lien);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.commentaire__texte {
+  flex: 1 1 10rem;
+  min-width: 0;
+  font-size: var(--t-petit);
+  overflow-wrap: anywhere;
+}
+
+/* --- Frise du Jour J ----------------------------------------------------------------------------------- */
+.frise {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.frise__element {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--h-44) minmax(0, 1fr);
+  gap: var(--e-12);
+  padding-bottom: var(--e-16);
+}
+
+.frise__element:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--h-44) / 2 - 1.5px);
+  top: calc(var(--h-44) + var(--e-4));
+  bottom: 0;
+  width: 3px;
+  background: var(--filet);
+}
+
+.frise__numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--h-44);
+  height: var(--h-44);
+  border-radius: var(--r-rond);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+  font-family: var(--police-titre);
+  font-size: var(--t-frise);
+}
+
+.frise__titre {
+  padding-top: var(--e-8);
+  font-family: var(--police-texte);
+  font-weight: 800;
+  font-size: var(--t-titre-carte);
+  line-height: 1.2;
+}
+
+.frise__duree {
+  color: var(--secondaire);
+  font-weight: 400;
+  font-size: var(--t-petit);
+}
+
+.frise__ligne {
+  font-size: var(--t-petit);
+}
+
+.frise__ligne:first-of-type {
+  margin-top: var(--e-4);
+}
+
+.frise__vide {
+  color: var(--secondaire);
+}
+
+/* --- Check-list ---------------------------------------------------------------------------------------- */
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.ligne-checklist {
+  margin: 0;
+}
+
+.ligne-checklist__bouton {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e-12);
+  width: 100%;
+  min-height: var(--h-52);
+  padding: var(--e-8) var(--e-12);
+  border-radius: var(--r-12);
+  border: var(--trait) solid var(--filet);
+  background: transparent;
+  color: var(--texte);
+  font-size: var(--t-bouton);
+  text-align: left;
+}
+
+.ligne-checklist--fait .ligne-checklist__bouton {
+  background: var(--surface);
+}
+
+.ligne-checklist__case {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--r-8);
+  border: var(--trait) solid currentColor;
+  font-weight: 800;
+}
+
+.ligne-checklist__libelle {
+  flex: 1 1 8rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ligne-checklist__etat {
+  font-size: var(--t-mini);
+  font-weight: 800;
+  text-align: right;
+}
+
+.ligne-checklist__bouton:hover,
+.ligne-checklist__bouton:focus-visible {
+  background: var(--or);
+  color: var(--sur-or);
+}
+
+.ligne-checklist__bouton:focus-visible {
+  border-color: var(--focus-filet);
+}
+
+/* --- Décompte (la seule animation du site) ------------------------------------------------------------- */
+.decompte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--e-8);
+  padding: var(--e-24) var(--e-16);
+  border-radius: var(--r-16);
+  background: var(--fond);
+  color: var(--texte);
+  text-align: center;
+}
+
+.decompte__chiffre {
+  font-family: var(--police-titre);
+  font-size: var(--t-decompte);
+  line-height: 1;
+  color: var(--decompte);
+}
+
+.decompte--grand .decompte__chiffre {
+  font-size: min(var(--t-decompte-plein), 45vh);
+}
+
+.decompte__texte {
+  font-weight: 700;
+}
+
+.decompte__tempo {
+  color: var(--secondaire);
+  font-size: var(--t-mini);
+}
+
+.decompte__chiffre--bat {
+  animation: battement var(--duree-battement) ease-out;
+}
+
+@keyframes battement {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  25% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- Champs de formulaire ------------------------------------------------------------------------------ */
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-16);
+  margin: 0;
+}
+
+.formulaire__resume {
+  padding: var(--e-12) var(--e-16);
+  border: var(--trait-fort) solid var(--orange);
+  border-radius: var(--r-12);
+}
+
+.formulaire__resume-titre {
+  font-weight: 800;
+}
+
+.formulaire__resume a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--h-44);
+}
+
+.formulaire__resume ul {
+  margin: var(--e-4) 0 0;
+  padding-left: var(--e-24);
+}
+
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-4);
+}
+
+.champ__etiquette {
+  font-weight: 700;
+}
+
+.champ__facultatif {
+  color: var(--secondaire);
+  font-weight: 400;
+}
+
+.champ__aide {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.champ__erreur {
+  padding-left: var(--e-8);
+  border-left: 4px solid var(--orange);
+  color: var(--orange-texte);
+  font-size: var(--t-petit);
+  font-weight: 700;
+}
+
+.champ__erreur-mot {
+  font-weight: 800;
+}
+
+.champ__zone {
+  width: 100%;
+  min-height: var(--h-48);
+  padding: var(--e-12);
+  border: var(--trait) solid var(--secondaire);
+  border-radius: var(--r-12);
+  background: var(--fond);
+  color: var(--texte);
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.champ--erreur .champ__zone {
+  border-color: var(--orange);
+  border-width: var(--trait-fort);
+}
+
+.champ__zone--texte {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.champ__zone--fichier {
+  padding: var(--e-8);
+}
+
+/* Zone en lecture seule (lien à copier) : surface secondaire, agrandissable en hauteur seulement. */
+.champ__zone--lecture {
+  background: var(--surface-2);
+  resize: vertical;
+}
+
+.champ__ligne-case {
+  display: flex;
+  align-items: center;
+  gap: var(--e-12);
+  min-height: var(--h-44);
+}
+
+.champ__case {
+  flex: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.champ__etiquette--case {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: var(--h-44);
+  cursor: pointer;
+}
+
+/* --- Nouvelle version ---------------------------------------------------------------------------------- */
+.nouvelle-version {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-12);
+  padding: var(--e-12) var(--e-16);
+  border-radius: var(--r-12);
+  background: var(--surface-2);
+}
+
+.nouvelle-version__texte {
+  font-weight: 700;
+}

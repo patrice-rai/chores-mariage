@@ -1,0 +1,413 @@
+/*
+ * Base commune : remise à zéro, page, typographie, boutons, champs, tableaux, utilitaires.
+ * Aucune couleur ici : seulement les variables de jetons.css (vérifié par scripts/lint-inline.php).
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-wrap: break-word;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police-texte);
+  font-size: var(--t-corps);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  font-size: inherit;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--lien);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.15em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Texte très agrandi dans une colonne étroite : un mot trop long se coupe plutôt que de déborder de la page. */
+button,
+.bouton,
+.commande {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+svg {
+  overflow: visible;
+}
+
+/* Focus : contour or de 3 px (maquette), doublé d'un filet sombre sur les boutons et d'un fond or sur les liens,
+   parce que l'or seul ne fait que 2,6:1 sur le fond jasmin (WCAG 1.4.11 demande 3:1). */
+:focus-visible {
+  outline: var(--trait-fort) solid var(--focus);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline-color: var(--focus-filet);
+  background: var(--or);
+  color: var(--sur-or);
+  text-decoration: underline 0.15em var(--focus-filet);
+}
+
+/* Champs et zones défilantes : contour du filet (l'or seul n'atteint pas 3:1 sur le fond clair). */
+.champ__zone:focus-visible,
+.champ__case:focus-visible,
+.tableau-defilant:focus-visible,
+summary:focus-visible {
+  outline-color: var(--focus-filet);
+}
+
+[id] {
+  scroll-margin-top: var(--e-16);
+}
+
+main:focus {
+  outline: none;
+}
+
+.visuellement-cache {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Lien d'évitement : visible au focus seulement. */
+.evitement {
+  position: absolute;
+  top: var(--e-8);
+  left: var(--e-8);
+  z-index: 10;
+  padding: var(--e-12) var(--e-16);
+  background: var(--or);
+  color: var(--sur-or);
+  font-weight: 800;
+  border-radius: var(--r-12);
+}
+
+/* Réduit à rien tant qu'il n'a pas le focus : il ne recouvre jamais le premier bouton de la barre haute et ne
+   dépasse jamais de la page, même avec le texte agrandi. */
+.evitement:not(:focus) {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Mise en page : une colonne centrée, mobile d'abord ; les pages larges (chanson, gabarits) passent en deux
+   colonnes au bureau. */
+.page {
+  flex: 1;
+  width: 100%;
+  max-width: var(--largeur-page);
+  margin: 0 auto;
+}
+
+.page:has(.contenu--large) {
+  max-width: var(--largeur-large);
+}
+
+.contenu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-16);
+  padding: var(--e-4) var(--e-16) var(--e-24);
+  min-width: 0;
+}
+
+.titre-ecran {
+  font-family: var(--police-titre);
+  font-size: var(--t-ecran);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.titre-chanson {
+  font-family: var(--police-titre);
+  font-size: var(--t-chanson);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.salut {
+  font-family: var(--police-titre);
+  font-size: var(--t-salut);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+/* Boutons : 48 px par défaut, 12 px de rayon, texte en gras (maquette). */
+.bouton {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-8);
+  min-height: var(--h-48);
+  padding: var(--e-8) var(--e-16);
+  border-radius: var(--r-12);
+  border: var(--trait) solid var(--accent);
+  font-weight: 800;
+  font-size: var(--t-bouton);
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.bouton--contour {
+  background: transparent;
+  color: var(--accent);
+}
+
+.bouton--plein {
+  background: var(--grenat);
+  border-color: var(--grenat);
+  color: var(--sur-grenat);
+}
+
+.bouton--or {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.bouton--secondaire {
+  background: var(--surface-2);
+  border-color: var(--surface-2);
+  color: var(--texte);
+}
+
+.bouton--choix {
+  background: transparent;
+  color: var(--accent);
+}
+
+.bouton--choix[aria-pressed="true"] {
+  background: var(--grenat);
+  border-color: var(--grenat);
+  color: var(--sur-grenat);
+}
+
+.bouton--56 {
+  min-height: var(--h-56);
+  font-size: var(--t-prenom);
+}
+
+.bouton:hover,
+.bouton:focus-visible {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.bouton:focus-visible {
+  border-color: var(--focus-filet);
+  text-decoration: none;
+}
+
+/* Bandeau grenat de l'entrée et du lien manquant (maquette 1a). */
+.bandeau {
+  padding: var(--e-40) var(--e-24) var(--e-32);
+  background: var(--grenat);
+  color: var(--sur-grenat);
+  border-radius: 0 0 var(--r-24) var(--r-24);
+}
+
+.bandeau__titre {
+  font-family: var(--police-titre);
+  font-size: var(--t-entree);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.bandeau__texte {
+  margin-top: var(--e-12);
+  font-size: var(--t-prenom);
+}
+
+/* Entrée : neuf prénoms en boutons de 72 px, trois par ligne. */
+.entree {
+  margin: 0;
+  padding: var(--e-24) var(--e-16) var(--e-8);
+}
+
+.entree__groupe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.entree__prenoms {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--e-12);
+}
+
+@media (max-width: 22rem) {
+  .entree__prenoms {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.aide {
+  margin: var(--e-16) var(--e-16) var(--e-24);
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+/* Blocs (administration) */
+.bloc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+  padding: var(--e-16);
+  background: var(--surface);
+  border-radius: var(--r-16);
+}
+
+.bloc h2 {
+  font-family: var(--police-titre);
+  font-size: var(--t-h2);
+}
+
+/* Tableaux */
+.tableau-defilant {
+  /* position: relative : les textes « visuellement cachés » des cellules restent dans la zone défilante au lieu de
+     déborder de la page (leur bloc conteneur serait sinon la fenêtre). */
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tableau {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-petit);
+}
+
+.tableau caption {
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: var(--e-8);
+}
+
+.legende {
+  font-weight: 700;
+}
+
+.tableau th,
+.tableau td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--e-8);
+  border-bottom: 1px solid var(--filet);
+}
+
+/* Messages */
+.avertissement {
+  padding: var(--e-12) var(--e-16);
+  border-left: 4px solid var(--orange);
+  background: var(--surface);
+  font-weight: 700;
+}
+
+.confirmation {
+  padding: var(--e-12) var(--e-16);
+  border-left: 4px solid var(--vert);
+  background: var(--surface);
+  font-weight: 700;
+}
+
+/* Pied de page : aide au même endroit sur chaque page (WCAG 3.2.6). */
+.pied {
+  width: 100%;
+  max-width: var(--largeur-page);
+  margin: 0 auto;
+  padding: var(--e-24) var(--e-16) var(--e-32);
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+@media (min-width: 48rem) {
+  .bandeau {
+    margin-top: var(--e-24);
+    border-radius: var(--r-24);
+  }
+}
+
+/* Mouvement réduit : rien ne bouge (le décompte affiche ses chiffres sans mise à l'échelle). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "name": "patrice/chores-mariage",
+    "description": "Site privé « Chorés du mariage » : PHP 8.3 sans framework + SQLite. Composer ne sert qu'à l'outillage de test.",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.3",
+        "ext-pdo_sqlite": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload-dev": {
+        "classmap": ["tests/phpunit/"]
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.3.0"
+        }
+    },
+    "scripts": {
+        "lint": "php scripts/lint.php",
+        "lint-inline": "php scripts/lint-inline.php",
+        "contraste": "php scripts/contraste.php",
+        "test": "phpunit --colors=never",
+        "check": [
+            "@composer install --no-interaction --no-progress --quiet",
+            "@lint",
+            "@lint-inline",
+            "@contraste",
+            "@test"
+        ]
+    }
+}

@@ -1,0 +1,189 @@
+/*
+ * Jetons du site « Chorés du mariage » : la seule feuille qui contient des couleurs (spec § 9, maquette
+ * docs/maquette/, relevé dans docs/spec/00-lecture-maquette.md § 2 à 5). Les autres feuilles n'utilisent que
+ * ces variables (vérifié par scripts/lint-inline.php) ; chaque paire de couleurs autorisée est mesurée par
+ * scripts/contraste.php dans les deux thèmes. Où changer quoi : docs/DESIGN.md.
+ *
+ * Thèmes : clair par défaut ; sombre sous [data-theme="sombre"] (bascule, mode répétition, panneaux de
+ * /gabarits) et, sans choix enregistré, quand le système est en sombre. Le bloc sombre de la requête média est
+ * une copie exacte du bloc [data-theme="sombre"] (contraste.php échoue s'ils diffèrent).
+ */
+
+/* Polices auto-hébergées (OFL, public/polices/LICENCES.md) : latin et latin-ext seulement. */
+@font-face {
+  font-family: 'Yeseva One';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../polices/yeseva-one-latin-ext-400-normal-v5-3-0.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Yeseva One';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url('../polices/yeseva-one-latin-400-normal-v5-3-0.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url('../polices/nunito-sans-latin-ext-wght-normal-v5-3-0.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url('../polices/nunito-sans-latin-wght-normal-v5-3-0.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Thème clair (maquette THEMES.clair). */
+:root,
+[data-theme="clair"] {
+  color-scheme: light;
+  --fond: #fffaf3;
+  --surface: #f6ead8;
+  --surface-2: #efe0c8;
+  --texte: #2a1a12;
+  --secondaire: #5c4a44;
+  --grenat: #8a1538;
+  --sur-grenat: #fffaf3;
+  --grenat-inverse: #8a1538;
+  --or: #c9930a;
+  --sur-or: #2a1a12;
+  --filet: #e3d3bb;
+  --vert: #2e6b3a;
+  --orange: #b4530a;
+  --orange-texte: #a04a08;
+  --sur-orange: #fffaf3;
+  --accent: #8a1538;
+  --lien: #8a1538;
+  --focus: #c9930a;
+  --focus-filet: #2a1a12;
+  --voile: #17121ad9;
+  --sur-voile: #fff7ec;
+  --decompte: #e0ab2a;
+}
+
+/* Thème sombre (maquette THEMES.sombre, corrigé : le grenat éclairci ne sert qu'aux surfaces, les boutons
+   contour prennent --texte, les liens l'or éclairci). */
+[data-theme="sombre"] {
+  color-scheme: dark;
+  --fond: #17121a;
+  --surface: #241c28;
+  --surface-2: #312736;
+  --texte: #fff7ec;
+  --secondaire: #cdbfb6;
+  --grenat: #a4284c;
+  --sur-grenat: #fff7ec;
+  --grenat-inverse: #17121a;
+  --or: #e0ab2a;
+  --sur-or: #17121a;
+  --filet: #3d3242;
+  --vert: #7fcf8c;
+  --orange: #f0a060;
+  --orange-texte: #f0a060;
+  --sur-orange: #17121a;
+  --accent: #fff7ec;
+  --lien: #e0ab2a;
+  --focus: #e0ab2a;
+  --focus-filet: #fff7ec;
+  --voile: #17121ad9;
+  --sur-voile: #fff7ec;
+  --decompte: #e0ab2a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="clair"]) {
+    color-scheme: dark;
+    --fond: #17121a;
+    --surface: #241c28;
+    --surface-2: #312736;
+    --texte: #fff7ec;
+    --secondaire: #cdbfb6;
+    --grenat: #a4284c;
+    --sur-grenat: #fff7ec;
+  --grenat-inverse: #17121a;
+    --or: #e0ab2a;
+    --sur-or: #17121a;
+    --filet: #3d3242;
+    --vert: #7fcf8c;
+    --orange: #f0a060;
+    --orange-texte: #f0a060;
+    --sur-orange: #17121a;
+    --accent: #fff7ec;
+    --lien: #e0ab2a;
+    --focus: #e0ab2a;
+    --focus-filet: #fff7ec;
+    --voile: #17121ad9;
+    --sur-voile: #fff7ec;
+    --decompte: #e0ab2a;
+  }
+}
+
+/* Typographie, cibles, rayons, espacements (communs aux deux thèmes). Tailles en rem : le texte suit le
+   réglage du navigateur (1rem = 16 px par défaut). */
+:root {
+  --police-titre: 'Yeseva One', Georgia, 'Times New Roman', serif;
+  --police-texte: 'Nunito Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --t-decompte-plein: 16.25rem;
+  --t-decompte: 7.5rem;
+  --t-entree: 2.625rem;
+  --t-salut: 2.375rem;
+  --t-ecran: 2.125rem;
+  --t-chanson: 2rem;
+  --t-lecteur: 1.75rem;
+  --t-carte-repetition: 1.625rem;
+  --t-h2: 1.5rem;
+  --t-repetition-commande: 1.5rem;
+  --t-frise: 1.375rem;
+  --t-barre: 1.25rem;
+  --t-titre-carte: 1.1875rem;
+  --t-prenom: 1.125rem;
+  --t-corps: 1.0625rem;
+  --t-bouton: 1rem;
+  --t-petit: 0.9375rem;
+  --t-mini: 0.875rem;
+
+  --h-44: 2.75rem;
+  --h-48: 3rem;
+  --h-52: 3.25rem;
+  --h-56: 3.5rem;
+  --h-60: 3.75rem;
+  --h-64: 4rem;
+  --h-72: 4.5rem;
+
+  --r-6: 0.375rem;
+  --r-8: 0.5rem;
+  --r-10: 0.625rem;
+  --r-12: 0.75rem;
+  --r-14: 0.875rem;
+  --r-16: 1rem;
+  --r-24: 1.5rem;
+  --r-rond: 50%;
+
+  --e-4: 0.25rem;
+  --e-8: 0.5rem;
+  --e-12: 0.75rem;
+  --e-16: 1rem;
+  --e-24: 1.5rem;
+  --e-32: 2rem;
+  --e-40: 2.5rem;
+
+  --trait: 2px;
+  --trait-fort: 3px;
+  --largeur-page: 45rem;
+  --largeur-large: 80rem;
+  --largeur-video-repetition: 68.75rem;
+  --duree-battement: 0.35s;
+}

@@ -1,0 +1,29 @@
+# Développement local seulement : la production est l'hébergement mutualisé Hostinger de Patrice.
+# Site : http://127.0.0.1:8095. Ports interdits sur ce poste : 3000, 3100, 3102, 5432, 5433, 7001, 8090, 3307.
+name: chores-mariage
+
+services:
+  web:
+    container_name: chores-mariage-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chores-mariage-web:dev
+    ports:
+      - '127.0.0.1:8095:80'
+    volumes:
+      - .:/var/www/app
+      # La base SQLite (mode WAL) et les vidéos vivent dans un volume Docker : le montage d'un dossier Windows ne
+      # garantit pas les verrous dont SQLite a besoin.
+      - stockage:/var/www/app/stockage
+      - composer-cache:/root/.composer
+    healthcheck:
+      test: ['CMD', 'php', '-r', 'exit(@file_get_contents("http://127.0.0.1/robots.txt") === false ? 1 : 0);']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+volumes:
+  stockage:
+  composer-cache:

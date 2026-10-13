@@ -1,0 +1,8 @@
+# Réglages pnpm (outillage de test seulement : Playwright et axe ; le site n'a aucune dépendance côté client).
+# Chaîne d'approvisionnement : une version publiée depuis moins de 7 jours est refusée.
+minimumReleaseAge: 10080
+# Aucun script d'installation n'est exécuté sans être listé (aucun n'est nécessaire).
+strictDepBuilds: true
+onlyBuiltDependencies: []
+# Refuse une version dont la provenance est moins sûre que celle d'une version précédente.
+trustPolicy: no-downgrade

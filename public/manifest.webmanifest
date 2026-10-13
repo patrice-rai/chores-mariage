@@ -1,0 +1,18 @@
+{
+  "name": "Chorés du mariage",
+  "short_name": "Chorés",
+  "description": "Les chorés des cousins pour le mariage : répéter, se placer, se retrouver.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "moi",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#8a1538",
+  "background_color": "#fffaf3",
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icones/apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

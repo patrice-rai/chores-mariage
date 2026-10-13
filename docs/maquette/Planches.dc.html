@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#efe6d8}a{color:#8a1538}a:hover{color:#c9930a}</style>
+</helmet>
+
+<section style="padding:40px;font-family:'Nunito Sans',system-ui,sans-serif;color:#2a1a12;display:flex;flex-direction:column;gap:40px">
+<div style="max-width:720px">
+<div style="font-family:'Yeseva One',serif;font-size:44px;line-height:1">Chorés du mariage — planches</div>
+<p style="font-size:17px;margin:12px 0 0;text-wrap:pretty">Un outil qu'on ouvre entre deux passages, le souffle court. Les écrans ci-dessous sont vivants : touche, change les états, lance le décompte. Le parcours complet est dans <a href="Chorés du mariage.dc.html">le prototype</a>.</p>
+</div>
+
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:28px;font-weight:400">Écrans mobiles · 390 × 844</h2>
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+
+<div id="1a" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1a</span><strong>Entrée</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="entree" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1b" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1b</span><strong>Ma page — Jessica</strong> (3 chorés)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="accueil" user="Jessica" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1c" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1c</span><strong>Ma page — Nadine</strong> (un solo, choré à créer)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="accueil" user="Nadine" song="inisai" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1d" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1d</span><strong>Ma page — première visite</strong> (rien marqué, personne n'a répondu)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="accueil" user="Stéphane" scenario="premiere" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1e" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1e</span><strong>Chanson — Kanimaa</strong> (lecteur, sections, ma place, grille)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Jessica" song="kanimaa" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1f" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1f</span><strong>Chanson — miroir + boucle activés</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Jessica" song="kanimaa" scenario="lecteur" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1g" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1g</span><strong>Chanson — vidéo en chargement</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Jessica" song="kanimaa" scenario="chargement" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1h" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1h</span><strong>Chanson — hors ligne</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Jessica" song="kanimaa" scenario="horsligne" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1i" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1i</span><strong>Chanson — Yaaro Yaarodi, choré à créer</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Jessica" song="yaaro" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1j" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1j</span><strong>Chanson — Innisai, solo de Nadine</strong> (décidée, à créer)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Nadine" song="inisai" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1k" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1k</span><strong>Mode répétition — décompte</strong> (lisible à deux mètres)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="repetition" user="Jessica" song="kanimaa" scenario="decompte" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1l" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1l</span><strong>Mode répétition — miroir, boucle</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="repetition" user="Jessica" song="kanimaa" scenario="lecteur" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1m" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1m</span><strong>Placements</strong> (une section, flèches vers la suivante)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="placements" user="Jessica" song="kanimaa" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1n" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1n</span><strong>Répétitions</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="repetitions" user="Jessica" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1o" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1o</span><strong>Répétitions — personne n'a répondu</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="repetitions" user="Jessica" scenario="sansreponse" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1p" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1p</span><strong>Vidéos des cousins</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="videos" user="Jessica" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1q" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1q</span><strong>Jour J</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="jourj" user="Jessica" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1r" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1r</span><strong>Mode sombre — Ma page</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="accueil" user="Jessica" theme="sombre" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1s" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1s</span><strong>Mode sombre — Chanson</strong></div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Jessica" song="kanimaa" theme="sombre" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1y" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1y</span><strong>Ma page — Patrice</strong> (demande en attente sur Kacheri, chansons proposées)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="accueil" user="Patrice" hint-size="390px,844px"></dc-import></div></div>
+
+<div id="1z" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1z</span><strong>Chanson — Thalapathy Kacheri, vue par Patrice</strong> (en attente)</div>
+<div style="width:390px;height:844px;border-radius:24px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chanson" user="Patrice" song="kacheri" hint-size="390px,844px"></dc-import></div></div>
+</div>
+
+<h2 style="margin:0;font-family:'Yeseva One',serif;font-size:28px;font-weight:400">Bureau · 1 280 px</h2>
+<div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+<div id="1t" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1t</span><strong>Page d'une chanson — bureau</strong></div>
+<div style="width:1280px;border-radius:16px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="chansonBureau" user="Jessica" song="kanimaa" hint-size="1280px,900px"></dc-import></div></div>
+<div id="1u" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:8px;align-items:center;font-size:15px"><span style="background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800">1u</span><strong>Placements — bureau</strong> (les huit sections côte à côte)</div>
+<div style="width:1280px;border-radius:16px;overflow:hidden;border:1px solid #d8c9b2"><dc-import name="Chorés du mariage" screen="placementsBureau" user="Jessica" song="kanimaa" hint-size="1280px,900px"></dc-import></div></div>
+</div>
+
+<!-- COMPOSANTS -->
+<h2 id="1v" style="margin:0;font-family:'Yeseva One',serif;font-size:28px;font-weight:400"><span style="font-family:'Nunito Sans',sans-serif;background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800;font-size:15px;vertical-align:middle">1v</span> Composants</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,390px));gap:24px;align-items:start">
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Lecteur et commandes · 64 / 56 px</div>
+<div style="position:relative;aspect-ratio:16/9;border-radius:16px;background:#8a1538;color:#fffaf3;padding:16px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-end"><div style="font-family:'Yeseva One',serif;font-size:28px;line-height:1">Kanimaa</div><div style="font-variant-numeric:tabular-nums;font-size:15px;margin-top:4px">0:34 / 4 min 04 · Refrain 1</div><div style="position:absolute;top:12px;left:12px;background:#c9930a;color:#2a1a12;font-weight:800;font-size:14px;padding:4px 10px;border-radius:8px">Miroir activé</div><div style="position:absolute;left:0;right:0;bottom:0;height:6px;background:rgba(0,0,0,.35)"><div style="height:100%;width:14%;background:#c9930a"></div></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="height:64px;border-radius:14px;background:#c9930a;color:#2a1a12;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center">Lecture</div><div style="height:64px;border-radius:14px;background:#8a1538;color:#fffaf3;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center">Plein écran</div></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div style="height:56px;border-radius:12px;border:2px solid #8a1538;color:#8a1538;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center">0,5 ×</div><div style="height:56px;border-radius:12px;border:2px solid #8a1538;background:#8a1538;color:#fffaf3;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center">0,75 ×</div><div style="height:56px;border-radius:12px;border:2px solid #8a1538;color:#8a1538;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center">1 ×</div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="height:56px;border-radius:12px;border:2px solid #8a1538;background:#8a1538;color:#fffaf3;font-weight:800;font-size:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1">Miroir<span style="font-weight:400;font-size:14px">activé</span></div><div style="height:56px;border-radius:12px;border:2px solid #8a1538;color:#8a1538;font-weight:800;font-size:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;text-align:center">Boucle<span style="font-weight:400;font-size:14px">désactivée</span></div></div>
+<div style="font-size:14px;color:#5c4a44">Trois états : repos (contour grenat), activé (plein grenat), lecture (or). L'état est toujours écrit.</div>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Carte de chanson</div>
+<article style="background:#f6ead8;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-weight:800;font-size:19px">Kanimaa</div><div style="font-variant-numeric:tabular-nums;color:#5c4a44;font-size:15px">4 min 04</div></div><div style="color:#5c4a44;font-size:15px">Retro, 2025 · tout le groupe (8)</div><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:8px;border-radius:4px;background:#efe0c8;overflow:hidden"><div style="height:100%;width:62%;background:#c9930a"></div></div><div style="font-variant-numeric:tabular-nums;font-size:15px;font-weight:700">5 sections sur 8 maîtrisées</div></div><div style="height:48px;border-radius:12px;background:#8a1538;color:#fffaf3;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;margin-top:4px">Répéter</div></article>
+<article style="background:#f6ead8;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-weight:800;font-size:19px">Yaaro Yaarodi</div><div style="font-variant-numeric:tabular-nums;color:#5c4a44;font-size:15px">5 min 47</div></div><div style="color:#5c4a44;font-size:15px">Alaipayuthey, A.R. Rahman · Josiane, Catherine, Jessica</div><div style="color:#b4530a;font-weight:800;font-size:15px">Choré à créer — Josiane, Catherine, Jessica</div><div style="height:48px;border-radius:12px;background:#8a1538;color:#fffaf3;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;margin-top:4px">Répéter</div></article>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Ligne de section · trois états</div>
+<div style="border-radius:14px;padding:10px 12px;border:2px solid #8a1538;background:#f6ead8;display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:10px;min-height:44px"><span style="font-family:'Yeseva One',serif;font-size:20px;width:28px;text-align:center">3</span><span style="flex:1;font-weight:800;font-size:18px">Refrain 1</span><span style="font-variant-numeric:tabular-nums;font-size:15px">4 × 8 · 0:17</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">Pas encore</div><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">Presque</div><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;background:#c9930a;color:#2a1a12;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center">Je maîtrise</div></div></div>
+<div style="border-radius:14px;padding:10px 12px;border:2px solid #e3d3bb;display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:10px;min-height:44px"><span style="font-family:'Yeseva One',serif;font-size:20px;width:28px;text-align:center">6</span><span style="flex:1;font-weight:800;font-size:18px">Pont</span><span style="font-variant-numeric:tabular-nums;font-size:15px">2 × 8 · 0:09</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">Pas encore</div><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;background:#efe0c8;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">Presque</div><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center">Je maîtrise</div></div></div>
+<div style="border-radius:14px;padding:10px 12px;border:2px solid #e3d3bb;display:flex;flex-direction:column;gap:8px"><div style="display:flex;align-items:center;gap:10px;min-height:44px"><span style="font-family:'Yeseva One',serif;font-size:20px;width:28px;text-align:center">7</span><span style="flex:1;font-weight:800;font-size:18px">Rap</span><span style="font-variant-numeric:tabular-nums;font-size:15px">4 × 8 · 0:17</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;background:#efe0c8;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">Pas encore</div><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center">Presque</div><div style="height:44px;border-radius:10px;border:2px solid #e3d3bb;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center">Je maîtrise</div></div></div>
+<div style="font-size:14px;color:#5c4a44">Section en cours : contour grenat, fond jasmin foncé. « Je maîtrise » est le seul état en or.</div>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Point de placement</div>
+<div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+<div style="width:52px;height:52px;border-radius:50%;background:#8a1538;color:#fffaf3;border:3px solid #8a1538;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">Patrice</div>
+<div style="width:52px;height:52px;border-radius:50%;background:#c9930a;color:#2a1a12;border:3px solid #2a1a12;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px">Jessica</div>
+<div style="width:30px;height:30px;border-radius:50%;background:#8a1538;color:#fffaf3;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px">Pa</div>
+<div style="width:30px;height:30px;border-radius:50%;background:#c9930a;color:#2a1a12;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px">Je</div>
+<svg aria-hidden="true" width="90" height="30"><line x1="4" y1="15" x2="80" y2="15" stroke="#5c4a44" stroke-width="2" stroke-dasharray="3 3"></line><path d="M78,9 L88,15 L78,21 z" fill="#5c4a44"></path></svg>
+</div>
+<div style="font-size:14px;color:#5c4a44">Grenat = un cousin, or cerclé de noir = moi (« Me surligner »). Petit point : prénom abrégé à deux lettres. Flèche pointillée : déplacement vers la section suivante.</div>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Bouton de présence</div>
+<div style="background:#8a1538;border-radius:16px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="height:52px;border-radius:12px;border:2px solid #fffaf3;background:#fffaf3;color:#8a1538;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center">Je viens ✓</div><div style="height:52px;border-radius:12px;border:2px solid #fffaf3;color:#fffaf3;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center">Je ne peux pas</div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="height:48px;border-radius:12px;border:2px solid #8a1538;color:#8a1538;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center">Je viens</div><div style="height:48px;border-radius:12px;border:2px solid #8a1538;background:#8a1538;color:#fffaf3;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center">Je ne peux pas ✓</div></div>
+<div style="font-size:15px"><span style="color:#2e6b3a;font-weight:800">Présents :</span> Alex, Catherine, Josiane · <span style="font-weight:800">Absents :</span> Flobert</div>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Vidéo de cousin · commentaire horodaté</div>
+<article style="background:#f6ead8;border-radius:16px;overflow:hidden"><div style="aspect-ratio:16/9;background:#8a1538;color:#fffaf3;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;box-sizing:border-box"><div style="font-family:'Yeseva One',serif;font-size:24px;line-height:1">Kanimaa</div><div style="font-variant-numeric:tabular-nums;font-size:15px;margin-top:4px">0:48</div></div><div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px"><div style="display:flex;justify-content:space-between;gap:8px"><div style="font-weight:800;font-size:17px">Patrice · Refrain 1 chez moi</div><div style="font-size:14px;color:#5c4a44;white-space:nowrap">il y a 2 jours</div></div><div style="display:flex;gap:10px;align-items:flex-start;padding:6px 0;min-height:44px;border-top:1px solid #e3d3bb"><span style="font-variant-numeric:tabular-nums;font-weight:800;color:#8a1538;white-space:nowrap">à 0:42</span><span style="font-size:15px"><strong>Josiane :</strong> le bras gauche part trop tôt</span></div></div></article>
+<div style="font-size:14px;color:#5c4a44">Vignette : aplat grenat, titre et durée, jamais de photo. Toucher l'horodatage lance la vidéo à cet instant.</div>
+</div>
+
+<div style="background:#17121a;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;color:#fff7ec">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#cdbfb6">Décompte 5-6-7-8</div>
+<div style="display:flex;gap:8px;align-items:baseline;font-family:'Yeseva One',serif;color:#e0ab2a"><span style="font-size:48px;opacity:.35">5</span><span style="font-size:48px;opacity:.55">6</span><span style="font-size:48px;opacity:.8">7</span><span style="font-size:120px;line-height:1">8</span></div>
+<div style="font-size:15px;color:#cdbfb6">Un chiffre par temps, au tempo de la chanson (140 BPM → 0,43 s par chiffre ; jamais sous 0,38 s). Chaque chiffre entre par une légère mise à l'échelle (0,35 s). En « mouvement réduit », les chiffres s'affichent sans mouvement. Le texte « Décompte : 7 » accompagne toujours le chiffre.</div>
+</div>
+</div>
+
+<!-- FONDATIONS -->
+<h2 id="1w" style="margin:0;font-family:'Yeseva One',serif;font-size:28px;font-weight:400"><span style="font-family:'Nunito Sans',sans-serif;background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800;font-size:15px;vertical-align:middle">1w</span> Fondations</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;align-items:start;max-width:1400px">
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Palette · mode clair (contrastes mesurés)</div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#8a1538;flex-shrink:0"></div><div><strong>Grenat</strong> #8a1538 — identité, grands aplats, boutons pleins.<br><span style="font-size:14px;color:#5c4a44">Texte sur jasmin 9,0:1 · jasmin sur grenat 9,4:1</span></div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#c9930a;flex-shrink:0"></div><div><strong>Or</strong> #c9930a — accent, « je maîtrise », lecture.<br><span style="font-size:14px;color:#5c4a44">Jamais en texte sur jasmin (2,6:1). Texte noir chaud sur or 6,2:1.</span></div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#fffaf3;border:1px solid #d8c9b2;flex-shrink:0"></div><div><strong>Jasmin</strong> #fffaf3 — fond. Surfaces #f6ead8 et #efe0c8, filets #e3d3bb.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#2a1a12;flex-shrink:0"></div><div><strong>Noir chaud</strong> #2a1a12 — texte, 16,5:1. Secondaire #5c4a44, 8,0:1.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#2e6b3a;flex-shrink:0"></div><div><strong>Vert « présent »</strong> #2e6b3a — 6,2:1 sur jasmin, texte seulement.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#b4530a;flex-shrink:0"></div><div><strong>Orange « à créer »</strong> #b4530a — 4,8:1 sur jasmin, en texte gras et contour.</div></div>
+</div>
+
+<div style="background:#17121a;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;color:#fff7ec">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#cdbfb6">Palette · mode sombre (répéter le soir)</div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#17121a;border:1px solid #3d3242;flex-shrink:0"></div><div><strong>Fond</strong> #17121a. Surfaces #241c28 et #312736, filets #3d3242.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#fff7ec;flex-shrink:0"></div><div><strong>Texte</strong> #fff7ec — 17,7:1. Secondaire #cdbfb6 — 10,4:1.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#a4284c;flex-shrink:0"></div><div><strong>Grenat éclairci</strong> #a4284c — surfaces uniquement ; texte clair dessus 7,0:1.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#e0ab2a;flex-shrink:0"></div><div><strong>Or éclairci</strong> #e0ab2a — 8,8:1 en texte sur le fond ; chiffres du décompte.</div></div>
+<div style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:12px;background:#7fcf8c;flex-shrink:0"></div><div><strong>Vert</strong> #7fcf8c · <strong style="color:#f0a060">Orange</strong> #f0a060 — 9:1 et 8:1.</div></div>
+<div style="font-size:14px;color:#cdbfb6">Le mode répétition est toujours sombre, quel que soit le réglage : noir, grenat, or, blanc cassé.</div>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:8px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Typographie</div>
+<div style="font-family:'Yeseva One',serif;font-size:260px;line-height:.9;color:#8a1538">8</div>
+<div style="font-size:14px;color:#5c4a44">Yeseva One 260 px — décompte plein écran · 120 px dans le lecteur</div>
+<div style="font-family:'Yeseva One',serif;font-size:42px;line-height:1.05">Chorés du mariage</div><div style="font-size:14px;color:#5c4a44">Yeseva One 42 — titre d'entrée · 34/32 titres d'écran · 24 sections · 20 barre</div>
+<div style="font-weight:800;font-size:19px">Kanimaa — Nunito Sans 800, 19 px</div>
+<div style="font-size:17px">Corps 17 px, interligne 1,4. Jamais sous 14 px (étiquettes de grille).</div>
+<div style="font-variant-numeric:tabular-nums;font-size:17px;font-weight:700">4 × 8 · 0:17 · 0,75 × — chiffres tabulaires partout</div>
+</div>
+
+<div style="background:#fffaf3;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;border:1px solid #d8c9b2">
+<div style="font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#5c4a44">Espacements · rayons · cibles</div>
+<div style="display:flex;gap:8px;align-items:flex-end"><div style="width:4px;height:4px;background:#8a1538"></div><div style="width:8px;height:8px;background:#8a1538"></div><div style="width:12px;height:12px;background:#8a1538"></div><div style="width:16px;height:16px;background:#8a1538"></div><div style="width:24px;height:24px;background:#8a1538"></div><div style="width:32px;height:32px;background:#8a1538"></div><div style="width:40px;height:40px;background:#8a1538"></div></div>
+<div style="font-size:14px;color:#5c4a44">4 · 8 · 12 · 16 · 24 · 32 · 40. Marges d'écran 16 px.</div>
+<div style="display:flex;gap:12px;align-items:flex-end"><div style="width:56px;height:56px;border:2px solid #8a1538;border-radius:8px"></div><div style="width:56px;height:56px;border:2px solid #8a1538;border-radius:12px"></div><div style="width:56px;height:56px;border:2px solid #8a1538;border-radius:16px"></div><div style="width:56px;height:56px;border:2px solid #8a1538;border-radius:50%"></div></div>
+<div style="font-size:14px;color:#5c4a44">Rayons 8 (vignettes, cellules) · 12 (boutons) · 16 (cartes) · rond (points). Aucune ombre, aucun dégradé.</div>
+<div style="display:flex;gap:12px;align-items:flex-end"><div style="height:44px;padding:0 12px;border:2px solid #e3d3bb;border-radius:10px;display:flex;align-items:center;font-size:14px;font-weight:700">44 · états</div><div style="height:48px;padding:0 12px;border:2px solid #8a1538;border-radius:12px;display:flex;align-items:center;font-size:15px;font-weight:800;color:#8a1538">48 · partout</div><div style="height:56px;padding:0 12px;background:#8a1538;color:#fffaf3;border-radius:12px;display:flex;align-items:center;font-size:17px;font-weight:800">56 · lecteur</div><div style="height:72px;padding:0 12px;background:#c9930a;color:#2a1a12;border-radius:14px;display:flex;align-items:center;font-size:20px;font-weight:800">72 · répétition</div></div>
+</div>
+</div>
+
+<!-- NOTE -->
+<div id="1x" style="background:#fffaf3;border-radius:16px;padding:24px;border:1px solid #d8c9b2;max-width:760px;display:flex;flex-direction:column;gap:10px">
+<div style="font-family:'Yeseva One',serif;font-size:24px"><span style="font-family:'Nunito Sans',sans-serif;background:#2a1a12;color:#fffaf3;border-radius:6px;padding:2px 8px;font-weight:800;font-size:15px;vertical-align:middle">1x</span> Note</div>
+<ol style="margin:0;padding-left:20px;font-size:16px;line-height:1.5;display:flex;flex-direction:column;gap:4px">
+<li>Pas de compte : le prénom choisi est mémorisé sur le téléphone ; chaque cousin peut en changer d'un geste (« Changer »).</li>
+<li>Le lecteur est la signature : commandes de 56 à 72 px, états écrits (« Miroir : activé »), décompte 5-6-7-8 au tempo avant chaque lecture.</li>
+<li>Le niveau se marque par section, en trois mots ; la grille « Qui maîtrise quoi » en découle sans autre saisie.</li>
+<li>Une seule animation (le décompte), coupée en « mouvement réduit ». Mode répétition toujours sombre et contrasté.</li>
+<li>Les placements sont des points sur une grille, déplaçables par flèches — jamais de glisser obligatoire.</li>
+<li>Les sections hors ligne : seules celles déjà lues sont gardées sur le téléphone ; l'écran le dit.</li>
+<li>Le site remplace WhatsApp pour Jessica et Stéphane : sondage de dates, réponses et vidéos y sont visibles sans groupe.</li>
+<li>Les états flous sont écrits tels quels : « en attente » (Patrice sur Kacheri), « proposée, pas tranchée » (Maamadura, The Wedding Song, Sangeeth Celebration), « décidée » (Innisai).</li>
+</ol>
+<div style="font-weight:800;margin-top:6px">À demander aux cousins avant de coder</div>
+<ol style="margin:0;padding-left:20px;font-size:16px;line-height:1.5;display:flex;flex-direction:column;gap:4px">
+<li>Patrice sur Thalapathy Kacheri : oui ou non ? Qui décide, le trio ou le groupe ?</li>
+<li>Les trois chansons proposées : on tranche ou on les enlève ?</li>
+<li>Minutage de la coupe de Yaaro Yaarodi ; les références (Ahinth Vijay, VrindhArjun) sont-elles filmées en miroir ?</li>
+<li>Qui pose les chorés de Yaaro Yaarodi, et la prochaine répétition : chez qui ?</li>
+</ol>
+</div>
+</section>
+</x-dc>
+</body>
+</html>

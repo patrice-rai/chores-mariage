@@ -1,0 +1,238 @@
+{
+  "lighthouse": "13.5.0",
+  "passes": 3,
+  "reglages": "mobile par défaut (Slow 4G simulé, processeur ×4)",
+  "pages": [
+    {
+      "chemin": "/moi",
+      "performance": 1,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1289,
+      "lcp": 1759,
+      "tbt": 0,
+      "cls": 0,
+      "total": 97905,
+      "script": 10429,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 8059,
+      "passes": [
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 0.99,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    },
+    {
+      "chemin": "/chanson/kanimaa",
+      "performance": 0.97,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1480,
+      "lcp": 2070,
+      "tbt": 0,
+      "cls": 0.045,
+      "total": 129063,
+      "script": 25118,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 21214,
+      "passes": [
+        {
+          "performance": 0.97,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 0.92,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 0.98,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    },
+    {
+      "chemin": "/chanson/kanimaa/repeter",
+      "performance": 0.99,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1289,
+      "lcp": 1887,
+      "tbt": 0,
+      "cls": 0.052,
+      "total": 166595,
+      "script": 18062,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 7106,
+      "passes": [
+        {
+          "performance": 0.99,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 0.99,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 0.99,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    },
+    {
+      "chemin": "/placements/kanimaa",
+      "performance": 0.99,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1340,
+      "lcp": 1798,
+      "tbt": 0,
+      "cls": 0,
+      "total": 95950,
+      "script": 6500,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 10033,
+      "passes": [
+        {
+          "performance": 0.99,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 0.99,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    },
+    {
+      "chemin": "/repetitions",
+      "performance": 1,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1294,
+      "lcp": 1767,
+      "tbt": 0,
+      "cls": 0,
+      "total": 97650,
+      "script": 6500,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 11733,
+      "passes": [
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    },
+    {
+      "chemin": "/videos",
+      "performance": 1,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1293,
+      "lcp": 1762,
+      "tbt": 0,
+      "cls": 0,
+      "total": 89552,
+      "script": 6500,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 3635,
+      "passes": [
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    },
+    {
+      "chemin": "/jour-j",
+      "performance": 1,
+      "accessibilite": 1,
+      "bonnesPratiques": 1,
+      "fcp": 1266,
+      "lcp": 1589,
+      "tbt": 0,
+      "cls": 0,
+      "total": 91526,
+      "script": 6500,
+      "feuilles": 18325,
+      "polices": 50407,
+      "document": 5609,
+      "passes": [
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        },
+        {
+          "performance": 1,
+          "accessibilite": 1,
+          "bonnesPratiques": 1
+        }
+      ],
+      "auditsNonParfaits": []
+    }
+  ]
+}

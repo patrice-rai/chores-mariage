@@ -1,0 +1,25 @@
+# Secrets et données locales
+/config.php
+/.env
+/.env.*
+!/.env.example
+/stockage/
+/public/chemin-app.php
+
+# Vidéos et photos des cousins : jamais versionnées
+/medias/
+/public/medias/
+
+# Généré
+/vendor/
+/node_modules/
+/tmp/
+/test-results/
+/playwright-report/
+/docs/autopilot/
+
+# Paquet de mise en ligne (scripts/paquet.php)
+/dist/
+
+# Captures d'écran des phases (jeu de données local) : jamais versionnées dans le dépôt public
+/docs/captures/

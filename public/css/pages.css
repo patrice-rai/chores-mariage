@@ -1,0 +1,618 @@
+/*
+ * Mise en page des écrans de la phase 4 : Ma page, page d'une chanson, placements, répétitions, administration.
+ * Aucune couleur ici : seulement les variables de jetons.css (vérifié par scripts/lint-inline.php).
+ */
+
+/* --- Ma page ---------------------------------------------------------------------------------------------- */
+.ma-page {
+  gap: var(--e-24);
+}
+
+.ma-page__partie {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+}
+
+.ma-page__titre {
+  font-family: var(--police-titre);
+  font-size: var(--t-h2);
+}
+
+.ma-page__navigation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: var(--e-12);
+}
+
+.ma-page__lien {
+  min-height: var(--h-52);
+}
+
+/* --- Page d'une chanson ----------------------------------------------------------------------------------- */
+.page-chanson__decidee {
+  margin-top: var(--e-4);
+  color: var(--vert);
+  font-weight: 800;
+  font-size: var(--t-petit);
+}
+
+.page-chanson__partie {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.page-chanson__liens {
+  display: flex;
+  flex-direction: column;
+}
+
+.sections__progression {
+  font-weight: 700;
+  font-size: var(--t-petit);
+}
+
+.mini-scene__titre {
+  font-weight: 800;
+  font-size: var(--t-corps);
+}
+
+.scene__non-places {
+  font-size: var(--t-petit);
+}
+
+/* --- Placements ------------------------------------------------------------------------------------------- */
+.placements__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-8);
+}
+
+.placements__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--h-44);
+  padding: 0 var(--e-16);
+  border: var(--trait) solid var(--accent);
+  border-radius: var(--r-12);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: var(--t-petit);
+  text-decoration: none;
+}
+
+.placements__chip[aria-current="page"] {
+  background: var(--grenat);
+  border-color: var(--grenat);
+  color: var(--sur-grenat);
+}
+
+.placements__chip:hover {
+  background: var(--or);
+  border-color: var(--or);
+  color: var(--sur-or);
+}
+
+.placements__scene-tete {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-12);
+}
+
+.placements__mode {
+  font-family: var(--police-titre);
+  font-size: var(--t-lecteur);
+}
+
+.placements__mode-scene {
+  align-self: stretch;
+}
+
+.placements__mode-detail {
+  font-weight: 400;
+  font-size: var(--t-petit);
+}
+
+/* Vue d'ensemble : au bureau seulement (planche 1u), toutes les sections côte à côte. */
+.placements__toutes {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .placements__toutes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--e-12);
+  }
+
+  .placements__grille {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: var(--e-16);
+  }
+}
+
+/* --- Répétitions ------------------------------------------------------------------------------------------ */
+.repetitions__partie {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+}
+
+.repetitions__aide {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.repetition-carte {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+  padding: var(--e-16);
+  background: var(--surface);
+  border-radius: var(--r-16);
+}
+
+.repetition-carte__titre {
+  font-weight: 800;
+  font-size: var(--t-titre-carte);
+}
+
+.repetition-carte__statut,
+.repetition-carte__note {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+ul.repetition-carte__reponses {
+  margin: 0;
+  padding-left: var(--e-24);
+}
+
+/* --- Administration --------------------------------------------------------------------------------------- */
+.admin__navigation,
+.admin__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-8);
+}
+
+.admin__lien {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--h-44);
+  font-weight: 700;
+}
+
+.admin__sous-titre {
+  font-weight: 800;
+  font-size: var(--t-titre-carte);
+}
+
+.admin__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+}
+
+.admin__ligne {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-8);
+  padding-bottom: var(--e-12);
+  border-bottom: 1px solid var(--filet);
+}
+
+.admin__url {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+  overflow-wrap: anywhere;
+}
+
+.admin__questions,
+.admin__sauvegardes {
+  margin: 0;
+  padding-left: var(--e-24);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.admin__danseurs,
+.admin__point {
+  margin: 0;
+  padding: var(--e-12);
+  border: var(--trait) solid var(--filet);
+  border-radius: var(--r-12);
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+  gap: var(--e-12);
+}
+
+.admin__danseurs > legend,
+.admin__point > legend {
+  padding: 0 var(--e-4);
+}
+
+.admin__xy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-8);
+}
+
+.admin__fleches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--h-48), 1fr));
+  gap: var(--e-8);
+  align-self: end;
+}
+
+.admin__sections {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-16);
+}
+
+.admin__section h2 {
+  font-family: var(--police-titre);
+  font-size: var(--t-h2);
+}
+
+.admin__depuis {
+  align-self: flex-start;
+}
+
+.admin__video {
+  width: 100%;
+  max-height: 60vh;
+  border-radius: var(--r-12);
+  background: var(--texte);
+}
+
+.admin__tempo,
+.admin__taper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.admin__taper .bouton {
+  align-self: flex-start;
+}
+
+.admin__choix-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--e-8);
+}
+
+.admin__confirmation {
+  border: var(--trait-fort) solid var(--orange);
+}
+
+/* Au bureau, la scène garde une taille lisible plutôt que toute la largeur (planche 1u). */
+.placements > .scene {
+  width: 100%;
+  max-width: 42rem;
+}
+
+/* Message des niveaux envoyés sans rechargement : visible, vide tant qu'il n'y a rien à dire. */
+.sections__message {
+  font-weight: 700;
+  font-size: var(--t-petit);
+}
+
+.sections__message:empty {
+  margin: 0;
+}
+
+.admin__precision {
+  font-weight: 400;
+}
+
+/* --- Phase 5 : répétitions, vidéos des cousins, Jour J, hors ligne ---------------------------------------- */
+.admin__confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+  padding: var(--e-16);
+  border-radius: var(--r-12);
+  background: var(--fond);
+}
+
+.repetitions__sondage,
+.videos__ajouter,
+.jour-j__scene {
+  align-self: stretch;
+}
+
+.repetition-carte {
+  border: var(--trait) solid transparent;
+}
+
+.repetition-carte--decidee {
+  border-color: var(--accent);
+}
+
+.repetition-carte--passee {
+  background: transparent;
+  border-top: var(--trait) solid var(--filet);
+  border-radius: 0;
+  padding-inline: 0;
+}
+
+.repetition-carte__titre {
+  font-family: var(--police-titre);
+  font-weight: 400;
+  font-size: var(--t-h2);
+  line-height: 1.1;
+}
+
+.repetition-carte__mot {
+  font-weight: 800;
+}
+
+.repetition-carte__presents {
+  color: var(--vert);
+}
+
+.repetition-carte__compte-rendu {
+  padding: var(--e-12);
+  border-radius: var(--r-12);
+  background: var(--surface);
+  font-size: var(--t-petit);
+}
+
+.repetition-carte__texte {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.carte-repetition__question {
+  font-weight: 700;
+}
+
+.videos,
+.jour-j,
+.televersement,
+.hors-ligne {
+  gap: var(--e-16);
+}
+
+.videos__aide,
+.televersement__aide,
+.jour-j__aide,
+.jour-j__date {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.jour-j__date {
+  font-size: var(--t-corps);
+}
+
+.videos__album,
+.jour-j__partie,
+.hors-ligne__gardees {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+}
+
+.videos__titre-album {
+  font-family: var(--police-titre);
+  font-weight: 400;
+  font-size: var(--t-h2);
+}
+
+.videos__nombre {
+  font-family: var(--police-texte);
+  font-size: var(--t-petit);
+  color: var(--secondaire);
+}
+
+.videos__liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--e-16);
+}
+
+.televersement__conseil,
+.garder__conseil {
+  padding: var(--e-12) var(--e-16);
+  border-radius: var(--r-12);
+  background: var(--surface);
+  font-size: var(--t-petit);
+}
+
+.televersement__conseil > p,
+.garder__conseil > p {
+  margin-top: var(--e-8);
+}
+
+.televersement__resume,
+.garder__resume {
+  /* list-item : le triangle de <summary> reste, il dit « replié » ou « ouvert ». */
+  display: list-item;
+  padding: var(--e-12) 0;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.televersement__envoi,
+.televersement__progression,
+.garder {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.garder[hidden],
+.televersement__progression[hidden] {
+  display: none;
+}
+
+.televersement__barre,
+.garder__progression {
+  width: 100%;
+  height: 1rem;
+  accent-color: var(--accent);
+}
+
+.televersement__texte,
+.televersement__message,
+.garder__etat {
+  font-weight: 700;
+  font-size: var(--t-petit);
+}
+
+/* Zones role="status" toujours dans l’arbre (sinon le premier message n’est pas annoncé) : vides, sans place. */
+.televersement__message:empty,
+.garder__etat:empty {
+  margin: 0;
+}
+
+.garder__poids {
+  font-weight: 400;
+  font-size: var(--t-petit);
+}
+
+.page-video {
+  gap: var(--e-24);
+}
+
+.page-video__note {
+  margin-top: var(--e-8);
+  overflow-wrap: anywhere;
+}
+
+.page-video__commentaires,
+.page-video__suppression {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+}
+
+.page-video__liste .commentaire:last-child {
+  border-bottom: 1px solid var(--filet);
+}
+
+.page-video__instant {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-8);
+}
+
+.page-video__position {
+  align-self: flex-start;
+}
+
+.commentaire__supprimer {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--h-44);
+  color: var(--lien);
+  font-size: var(--t-petit);
+  font-weight: 700;
+}
+
+.lecteur-simple {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-12);
+  max-width: 50rem;
+}
+
+.lecteur-simple__ecran {
+  position: relative;
+  border-radius: var(--r-16);
+  overflow: hidden;
+  background: var(--grenat);
+}
+
+.lecteur-simple__video {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: var(--grenat);
+}
+
+.lecteur-simple--miroir .lecteur-simple__video {
+  transform: scaleX(-1);
+}
+
+.lecteur-simple__note,
+.lecteur-simple__infos {
+  color: var(--secondaire);
+  font-size: var(--t-petit);
+}
+
+.page-chanson__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-8);
+}
+
+.hors-ligne__liste {
+  margin: 0;
+  padding-left: var(--e-24);
+}
+
+.hors-ligne__liste a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--h-44);
+  font-weight: 700;
+}
+
+.nouvelle-version-zone {
+  padding: var(--e-8) var(--e-16);
+}
+
+.nouvelle-version-zone:empty {
+  padding: 0;
+}
+
+.repetitions__sondage {
+  min-height: var(--h-52);
+}
+
+.page-video__suppression .bouton,
+.garder__bouton {
+  align-self: flex-start;
+}
+
+.admin__ligne--check,
+.admin__ligne--video {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (min-width: 64rem) {
+  .page-video {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+  }
+
+  .page-video > div:first-child,
+  .page-video > .confirmation,
+  .page-video > .encart,
+  .page-video > .carte-video__format,
+  .page-video__suppression {
+    grid-column: 1 / -1;
+  }
+}
