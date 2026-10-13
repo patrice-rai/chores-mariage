@@ -58,7 +58,7 @@ function lien_manquant(Contexte $c, array $params): Reponse
     // vide rien.
     $perime = $c->cookie(\Chores\COOKIE_ACCES) !== null
         && !\Chores\cookie_acces_valide($c->config['SECRET'], \Chores\version_lien($c->pdo()), $c->cookie(\Chores\COOKIE_ACCES));
-    $reponse = rendre($c, 'lien', ['titre' => 'Lien à demander', 'oublier' => $perime]);
+    $reponse = rendre($c, 'lien', ['titre' => 'Lien à demander', 'oublier' => $perime, 'perime' => $perime]);
 
     return $perime ? $reponse->avecEntete('X-Chores-Oublier', '1') : $reponse;
 }

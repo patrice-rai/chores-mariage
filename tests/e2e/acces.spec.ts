@@ -7,7 +7,7 @@ test('un faux lien mène à la page « lien manquant »', async ({ page }) => {
   await page.goto('/e/' + 'A'.repeat(43))
   await expect(page).toHaveURL(ORIGINE + '/lien')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Chorés du mariage')
-  await expect(page.getByText('Ce lien n’est plus valable (ou tu n’en as pas). Demande le nouveau à Patrice.')).toBeVisible()
+  await expect(page.getByText(/lien secret envoyé par Patrice|n’est plus valable : Patrice en a créé un nouveau/)).toBeVisible()
   await verifierAxe(page)
 })
 
